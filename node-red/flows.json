@@ -1,0 +1,854 @@
+[
+    {
+        "id": "57ad255b75a78a1a",
+        "type": "tab",
+        "label": "Flujo 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "70107066d0ebce6a",
+        "type": "modbus-client",
+        "name": "Ingeteam",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "10.48.1.173",
+        "tcpPort": "502",
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": "9600",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "none",
+        "serialConnectionDelay": "100",
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": 1,
+        "commandDelay": 1,
+        "clientTimeout": 1000,
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": 2000,
+        "parallelUnitIdsAllowed": true,
+        "showErrors": false,
+        "showWarnings": true,
+        "showLogs": true
+    },
+    {
+        "id": "747464b0cb393574",
+        "type": "modbus-read",
+        "z": "57ad255b75a78a1a",
+        "name": "Ingeteam Registry Read",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": true,
+        "showErrors": true,
+        "showWarnings": true,
+        "unitid": "1",
+        "dataType": "InputRegister",
+        "adr": "0",
+        "quantity": "81",
+        "rate": "1",
+        "rateUnit": "s",
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "server": "70107066d0ebce6a",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": true,
+        "emptyMsgOnFail": false,
+        "x": 230,
+        "y": 80,
+        "wires": [
+            [
+                "661143214eb9e353"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "661143214eb9e353",
+        "type": "buffer-parser",
+        "z": "57ad255b75a78a1a",
+        "name": "Buffer Parser",
+        "data": "payload",
+        "dataType": "msg",
+        "specification": "spec",
+        "specificationType": "ui",
+        "items": [
+            {
+                "type": "uint16be",
+                "name": "Year",
+                "offset": 0,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Month",
+                "offset": 2,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Day",
+                "offset": 4,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Hour",
+                "offset": 6,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Minute",
+                "offset": 8,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Second",
+                "offset": 10,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint32be",
+                "name": "Op_Time",
+                "offset": 12,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Stop_Event",
+                "offset": 18,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint32be",
+                "name": "Alarms",
+                "offset": 20,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Code_1",
+                "offset": 24,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Code_2",
+                "offset": 26,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Code_3",
+                "offset": 22,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Inverter_Status",
+                "offset": 30,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Waiting_Time_To_Connect_To_Grid",
+                "offset": 32,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Battery_Voltage",
+                "offset": 34,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "int16be",
+                "name": "Battery_Amps",
+                "offset": 36,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "int16be",
+                "name": "Battery_Power",
+                "offset": 38,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Battery_Soc",
+                "offset": 40,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Battery_SOH",
+                "offset": 42,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Battery_Charging_Voltage",
+                "offset": 44,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Battery_Discharging_Voltage",
+                "offset": 46,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Battery_Max_Charging_AMPS",
+                "offset": 48,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Battery_Max_Discharging_AMPS",
+                "offset": 50,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Battery_Status",
+                "offset": 52,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "int16be",
+                "name": "Battery_Temperature",
+                "offset": 54,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Battery_BMS_Alarms",
+                "offset": 56,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Battery_Discharge_Limitation_Reason",
+                "offset": 58,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Battery_Voltage_Internal_Sensor",
+                "offset": 60,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "PV1_Voltage",
+                "offset": 62,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "PV1_AMPS",
+                "offset": 64,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "PV1_Power",
+                "offset": 66,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "PV2_Voltage",
+                "offset": 68,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "PV2_AMPS",
+                "offset": 70,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "PV2_Power",
+                "offset": 72,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "int16be",
+                "name": "Inverter_Active_Power",
+                "offset": 74,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "int16be",
+                "name": "Inverter_Reactive_Power",
+                "offset": 76,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "int16be",
+                "name": "Inverter_Cos",
+                "offset": 78,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Active_Power_Reduction_Ratio",
+                "offset": 80,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Active_Power_Reduction_Reason",
+                "offset": 82,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Reactive_Power_Set_Point_Type",
+                "offset": 84,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Critical_Loads_Voltage",
+                "offset": 86,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Critical_Loads_AMPS",
+                "offset": 88,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Critical_Loads_Frequency",
+                "offset": 90,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "int16be",
+                "name": "Critical_Loads_Active_Power",
+                "offset": 92,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "int16be",
+                "name": "Critical_Loads_Reactive_Power",
+                "offset": 94,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Internal_Wattmeter_Grid_Voltage",
+                "offset": 96,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Internal_Wattmeter_Grid_Amps",
+                "offset": 98,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Internal_Wattmeter_Grid_Frequency",
+                "offset": 100,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "int16be",
+                "name": "Internal_Wattmeter_Grid_Active_Power",
+                "offset": 102,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "int16be",
+                "name": "Internal_Wattmeter_Grid_Reactive_Power",
+                "offset": 104,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "int16be",
+                "name": "Internal_Wattmeter_Grid_Cos",
+                "offset": 106,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "DC_Bus_Voltage",
+                "offset": 108,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "int16be",
+                "name": "Temperature_Internal_Inverter",
+                "offset": 114,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Positive_Isolation_Resistance",
+                "offset": 118,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Negative_Isolation_Resistance",
+                "offset": 120,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "RMS_Differential_Amps",
+                "offset": 122,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Digital_Output_1_Status",
+                "offset": 124,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Digital_Output_2_Status",
+                "offset": 126,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Digital_Input_DRM0_Status",
+                "offset": 128,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Digital_Input_2_Status",
+                "offset": 130,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Digital_Input_3_Status",
+                "offset": 132,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Battery_BMS_Flags",
+                "offset": 136,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "External_Wattmeter_Grid_Voltage",
+                "offset": 138,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "External_Wattmeter_Grid_Frequency",
+                "offset": 140,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "int16be",
+                "name": "External_Wattmeter_Grid_Active_Power",
+                "offset": 142,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "int16be",
+                "name": "External_Wattmeter_Grid_Reactive_Power",
+                "offset": 144,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Battery_BMS_Warnings",
+                "offset": 146,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Battery_BMS_Errors",
+                "offset": 148,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Battery_BMS_Faults",
+                "offset": 150,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Battery_BMS_Protections",
+                "offset": 152,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Battery_Charge_Limitation_Reason",
+                "offset": 154,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "Total_Loads_Active_Power",
+                "offset": 156,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16be",
+                "name": "External_PV_Power",
+                "offset": 158,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "int16be",
+                "name": "EV_Charge_Active_Power",
+                "offset": 160,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            }
+        ],
+        "swap1": "",
+        "swap2": "",
+        "swap3": "",
+        "swap1Type": "swap",
+        "swap2Type": "swap",
+        "swap3Type": "swap",
+        "msgProperty": "payload",
+        "msgPropertyType": "str",
+        "resultType": "keyvalue",
+        "resultTypeType": "return",
+        "multipleResult": false,
+        "fanOutMultipleResult": false,
+        "setTopic": true,
+        "outputs": 1,
+        "x": 510,
+        "y": 120,
+        "wires": [
+            [
+                "767f244c8960412f"
+            ]
+        ]
+    },
+    {
+        "id": "767f244c8960412f",
+        "type": "function",
+        "z": "57ad255b75a78a1a",
+        "name": "Lambda Prometheus Transformation",
+        "func": "global.set(\"modbusData\", msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b4540717096431ed",
+        "type": "function",
+        "z": "57ad255b75a78a1a",
+        "name": "Lambda function prometheus metrics generator",
+        "func": "//let metrics = [];\n\n//for (const [key, value] of Object.entries(global.get(\"modbusData\") || {})) {\n//    const metricName = `modbus_${key.replace(/ /g, '_').toLowerCase()}`;\n//    metrics.push(`# HELP ${metricName} Help for ${key}`);\n//    metrics.push(`# TYPE ${metricName} gauge`);\n//    metrics.push(`${metricName}{fabricante=\"Ingeteam\",modelo=\"Ingecon Sun Storage 1 Play TL M\",origen=\"ModBus TCP/IP\"} ${value}`);\n//}\n\n//msg.payload = metrics.join(\"\\n\");\n//return msg;\n\n//for (const [key, value] of Object.entries(global.get(\"modbusData\") || {})) {\n//    const metricName = `modbus_${key.replace(/ /g, '_').toLowerCase()}`;\n//    const metric = `\n//# HELP ${metricName} Help for ${key}\n//# TYPE ${metricName} gauge\n//${metricName}{fabricante=\"Ingeteam\",modelo=\"Ingecon Sun Storage 1 Play TL M\",origen=\"ModBus TCP/IP\"} ${value}\n//    `;\n//    node.send({ payload: metric });\n//}\n\n//return null; // No retornar un mensaje principal, ya que estamos usando node.send\n\nlet metrics = [];\n\nfor (const [key, value] of Object.entries(global.get(\"modbusData\") || {})) {\n    // Crear la métrica\n    const metricName = `modbus_${key.replace(/ /g, '_').toLowerCase()}`; // Formato para Prometheus\n    const metric = `\n# HELP ${metricName} Help for ${key}\n# TYPE ${metricName} gauge\n${metricName}{fabricante=\"Ingeteam\",modelo=\"Ingecon Sun Storage 1 Play TL M\",origen=\"ModBus TCP/IP\"} ${value}\n    `;\n    metrics.push(metric); // Agregar la métrica al array\n}\n\n// Unir todas las métricas en una sola cadena\nmsg.payload = metrics.join(\"\\n\");\nreturn msg; // Retornar el mensaje principal con todas las métricas\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 500,
+        "wires": [
+            [
+                "1b125c02fe253233"
+            ]
+        ]
+    },
+    {
+        "id": "f87f868b9031579a",
+        "type": "http in",
+        "z": "57ad255b75a78a1a",
+        "name": "URL Metricas",
+        "url": "/metricas",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 290,
+        "y": 420,
+        "wires": [
+            [
+                "b4540717096431ed"
+            ]
+        ]
+    },
+    {
+        "id": "1b125c02fe253233",
+        "type": "http response",
+        "z": "57ad255b75a78a1a",
+        "name": "Respuesta",
+        "statusCode": "",
+        "headers": {},
+        "x": 910,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "c1e0d80c42514245",
+        "type": "debug",
+        "z": "57ad255b75a78a1a",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 220,
+        "wires": []
+    }
+]

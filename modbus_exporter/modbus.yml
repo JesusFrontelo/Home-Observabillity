@@ -1,0 +1,145 @@
+modules:
+
+  - name: "start"
+    protocol: 'tcp/ip'
+    metrics:
+
+      - name: "ModBus_Ingeteam_Actual_Year"
+        help: "Actual Date. Year (Uint16)"
+        address: 40000
+        dataType: uint16
+        metricType: gauge
+
+      - name: "ModBus_Ingeteam_Actual_Month"
+        help: "Actual Date. Month (Uint16)"
+        address: 40001
+        dataType: uint16
+        metricType: gauge
+
+      - name: "ModBus_Ingeteam_Actual_Day"
+        help: "Actual Date. Day (Uint16)"
+        address: 40002
+        dataType: uint16
+        metricType: gauge
+
+      - name: "ModBus_Ingeteam_Actual_Hour"
+        help: "Actual Date. Hour (Uint16)"
+        address: 40003
+        dataType: uint16
+        metricType: gauge
+
+      - name: "ModBus_Ingeteam_Actual_Minute"
+        help: "Actual Date. Minute (Uint16)"
+        address: 40004
+        dataType: uint16
+        metricType: gauge
+
+      - name: "ModBus_Ingeteam_Actual_Second"
+        help: "Actual Date. Second (Uint16)"
+        address: 40005
+        dataType: uint16
+        metricType: gauge
+
+      - name: "ModBus_Ingeteam_Total_Operation_Time_High"
+        help: "Total hours of operation. hours. (bitshigh part of Uint32. Bits 31-16)"
+        address: 40006
+        dataType: uint32
+        metricType: gauge
+        endianness: big
+
+#      - name: "ModBus_Ingeteam_Total_Operation_Time_Low"
+#        help: "Total hours of operation. hours. (low part of Uint32. Bits 15-0)"
+#        address: 40007
+#        dataType: uint32
+#        metricType: gauge
+#        endianness: little
+
+      - name: "ModBus_Ingeteam_Stop_Event"
+        help: "Inverter Instantaneous Stop event"
+        address: 40009
+        dataType: uint16
+        metricType: gauge
+
+      - name: "ModBus_Ingeteam_Alarms_High"
+        help: "Instantaneous alarm"
+        address: 40010
+        dataType: uint32
+        metricType: gauge
+
+#      - name: "ModBus_Ingeteam_Alarms_Low"
+#        help: "Instantaneous alarm"
+#        address: 40011
+#        dataType: uint32
+#        metricType: gauge
+
+      - name: "ModBus_Ingeteam_Alarm_Code_1"
+        # https://www.ingeras.es/archive/manuals/ABH2010/IMC14/ABH2010IMC14_C.pdf For Alarm Interpretation and Troubleshooting Guide
+        help: "Origin and description of the events. See Alarm Interpretation and Troubleshooting Guide" 
+        address: 40012
+        dataType: uint16
+        metricType: gauge
+
+      - name: "ModBus_Ingeteam_Alarm_Code_2"
+        # https://www.ingeras.es/archive/manuals/ABH2010/IMC14/ABH2010IMC14_C.pdf For Alarm Interpretation and Troubleshooting Guide
+        help: "Origin and description of the events. See Alarm Interpretation and Troubleshooting Guide"
+        address: 40013
+        dataType: uint16
+        metricType: gauge
+
+      - name: "ModBus_Ingeteam_Alarm_Code_3"
+        # https://www.ingeras.es/archive/manuals/ABH2010/IMC14/ABH2010IMC14_C.pdf For Alarm Interpretation and Troubleshooting Guide
+        help: "Origin and description of the events. See Alarm Interpretation and Troubleshooting Guide"
+        address: 40014
+        dataType: uint16
+        metricType: gauge
+
+      - name: "ModBus_Ingeteam_Inverter_Status"
+        # https://www.ingeras.es/archive/manuals/ABH2010/IMB08/ABH2010IMB08_H.pdf INPUT REGISTERS 
+        help: "Inverter Status. See note 2 of the document link before"
+        address: 40015
+        dataType: uint16
+        metricType: gauge
+
+      - name: "ModBus_Ingeteam_Waiting_Time_To_Connect"
+        help: "Waiting Time to Connect to Grid [Sec]"
+        address: 40016
+        dataType: uint16
+        metricType: gauge
+
+      - name: "ModBus_Ingeteam_Battery_Voltage"
+        help: "Battery. Voltage [V x 10]"
+        address: 40017
+        dataType: uint16
+        metricType: gauge
+
+      - name: "ModBus_Ingeteam_Battery_Current"
+        help: "Battery. Current [A x 100]"
+        address: 40018
+        dataType: int16
+        metricType: gauge
+
+      - name: "ModBus_Ingeteam_Battery_Power"
+        help: "Battery. Power [W]"
+        address: 40019
+        dataType: int16
+        metricType: gauge
+
+      - name: "ModBus_Ingeteam_Battery_SOC"
+        help: "Battery. SOC [%]"
+        address: 40020
+        dataType: uint16
+        metricType: gauge
+
+      - name: "ModBus_Ingeteam_Battery_SOH"
+        help: "Battery. SOH [%]"
+        address: 40021
+        dataType: uint16
+        metricType: gauge
+
+      - name: "ModBus_Ingeteam_PV1_Power"
+        help: "PV1. Power [W]"
+        address: 40033
+        dataType: uint16
+        metricType: gauge
+        endianness: big
+

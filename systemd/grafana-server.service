@@ -1,0 +1,61 @@
+[Unit]
+Description=Grafana instance
+Documentation=http://docs.grafana.org
+Wants=network-online.target
+After=network-online.target
+#After=postgresql.service mariadb.service mysql.service influxdb.service
+
+[Service]
+EnvironmentFile=/opt/grafana/packaging/deb/default/grafana-server
+User=prometheus
+Group=prometheus
+Type=simple
+Restart=on-failure
+WorkingDirectory=/opt/grafana
+RuntimeDirectory=grafana
+RuntimeDirectoryMode=0750
+ExecStart=/opt/grafana/bin/grafana server                                     \
+                            --config=/opt/grafana/conf/defaults.ini                 \
+                            --homepath=/opt/grafana                                 \
+                            --pidfile=/opt/grafana/grafana-server.pid               \
+                            --packaging=standalone                                  \
+                            cfg:default.paths.logs=/var/log/grafana                 \
+                            cfg:default.paths.data=/opt/grafana/data                \
+#                            cfg:default.paths.plugins=${PLUGINS_DIR}                \
+#                            cfg:default.paths.provisioning=${PROVISIONING_CFG_DIR}
+Environment="GF_PATHS_CONFIG=/opt/grafana/conf/defaults.ini"
+Environment="GF_PATHS_DATA=/opt/grafana/data"
+#Environment="GF_PATHS_LOGS=/opt/grafana/logs"
+Environment="GF_PATHS_PLUGINS=/opt/grafana/plugins"
+Environment="GF_PATHS_PROVISIONING=/opt/grafana/provisioning"
+
+
+
+#LimitNOFILE=10000
+#TimeoutStopSec=20
+#CapabilityBoundingSet=
+#DeviceAllow=
+#LockPersonality=true
+#MemoryDenyWriteExecute=false
+#NoNewPrivileges=true
+#PrivateDevices=true
+#PrivateTmp=true
+#ProtectClock=true
+#ProtectControlGroups=true
+#ProtectHome=true
+#ProtectHostname=true
+#ProtectKernelLogs=true
+#ProtectKernelModules=true
+#ProtectKernelTunables=true
+#ProtectProc=invisible
+#ProtectSystem=full
+#RemoveIPC=true
+#RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+#RestrictNamespaces=true
+#RestrictRealtime=true
+#RestrictSUIDSGID=true
+#SystemCallArchitectures=native
+#UMask=0027
+
+[Install]
+WantedBy=multi-user.target

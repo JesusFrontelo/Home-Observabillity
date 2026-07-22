@@ -1,0 +1,31 @@
+[Unit]
+Description=Node Exporter
+
+[Service]
+User=root
+Group=root
+Type=simple
+ExecStart=/opt/node_exporter/node_exporter  --collector.systemd \
+--collector.systemd.unit-whitelist=(node-red.service|prometheus.service|grafana-server.service) \
+--no-collector.arp \
+--no-collector.bcache \
+--no-collector.bonding \
+--no-collector.conntrack \
+--no-collector.edac \
+--no-collector.entropy \
+--no-collector.filefd \
+--no-collector.hwmon \
+--no-collector.infiniband \
+--no-collector.ipvs \
+--no-collector.mdadm \
+--no-collector.netstat \
+--no-collector.nfs \
+--no-collector.sockstat \
+--no-collector.timex \
+--no-collector.uname \
+--no-collector.vmstat \
+--no-collector.zfs \
+--collector.textfile.directory=/opt/node_exporter/textfile
+
+[Install]
+WantedBy=default.target

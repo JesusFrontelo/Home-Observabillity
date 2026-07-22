@@ -1,0 +1,15 @@
+[Unit]
+Description=Modbus TCP Prometheus exporter
+Requires=network.target
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=prometheus
+Group=prometheus
+ExecStart=/opt/modbus_exporter/modbus_exporter --config.file='/opt/modbus_exporter/modbus.yml' --web.listen-address=:9602
+Restart=on-failure
+RestartSec=1
+
+[Install]
+WantedBy=multi-user.target

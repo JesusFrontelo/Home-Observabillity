@@ -1,0 +1,14 @@
+[Unit]
+Description=Alertmanager
+
+[Service]
+User=prometheus
+Group=prometheus
+Type=simple
+ExecStart=/opt/alertmanager/alertmanager --config.file=/opt/alertmanager/alertmanager.yml --storage.path=/opt/alertmanager/data/
+Restart=on-failure
+RestartSec=5s
+
+
+[Install]
+WantedBy=default.target
