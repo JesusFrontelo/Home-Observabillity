@@ -1,0 +1,528 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "Dashboard for Project-Environment EC2 Nodes",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "gnetId": 3297,
+  "graphTooltip": 0,
+  "id": 8,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": false,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "000000001"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 91,
+      "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "000000001"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Server status",
+      "type": "row"
+    },
+    {
+      "gridPos": {
+        "h": 5,
+        "w": 18,
+        "x": 0,
+        "y": 1
+      },
+      "id": 149,
+      "libraryPanel": {
+        "name": "Server Status",
+        "uid": "5s3slmn4z"
+      },
+      "title": "Server Status"
+    },
+    {
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 18,
+        "y": 1
+      },
+      "id": 145,
+      "libraryPanel": {
+        "name": "Uptime",
+        "uid": "GjvH23G4k"
+      },
+      "title": "Uptime"
+    },
+    {
+      "collapsed": false,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "000000001"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 6
+      },
+      "id": 57,
+      "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "000000001"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Server Services Status",
+      "type": "row"
+    },
+    {
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 7
+      },
+      "id": 99,
+      "libraryPanel": {
+        "name": "Services table",
+        "uid": "BmO9DJM4z"
+      },
+      "title": "Services table"
+    },
+    {
+      "collapsed": false,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "000000001"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 13
+      },
+      "id": 46,
+      "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "000000001"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Server CPU Utilization",
+      "type": "row"
+    },
+    {
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 0,
+        "y": 14
+      },
+      "id": 101,
+      "libraryPanel": {
+        "name": "CPU System Load (5m)",
+        "uid": "cx7So-M4k"
+      },
+      "title": "CPU System Load (5m)"
+    },
+    {
+      "gridPos": {
+        "h": 4,
+        "w": 7,
+        "x": 6,
+        "y": 14
+      },
+      "id": 103,
+      "libraryPanel": {
+        "name": "CPU User Load (5m)",
+        "uid": "w-cIT-M4z"
+      },
+      "title": "CPU User Load (5m)"
+    },
+    {
+      "gridPos": {
+        "h": 4,
+        "w": 7,
+        "x": 13,
+        "y": 14
+      },
+      "id": 105,
+      "libraryPanel": {
+        "name": "CPU Idle Load (5m)",
+        "uid": "TiUIoaM4k"
+      },
+      "title": "CPU Idle Load (5m)"
+    },
+    {
+      "gridPos": {
+        "h": 2,
+        "w": 4,
+        "x": 20,
+        "y": 14
+      },
+      "id": 107,
+      "libraryPanel": {
+        "name": "CPU Cores",
+        "uid": "qn6IoaG4k"
+      },
+      "title": "CPU Cores"
+    },
+    {
+      "gridPos": {
+        "h": 7,
+        "w": 4,
+        "x": 20,
+        "y": 16
+      },
+      "id": 109,
+      "libraryPanel": {
+        "name": "Current CPU Utilization",
+        "uid": "ayVNo-M4z"
+      },
+      "title": "Current CPU Utilization"
+    },
+    {
+      "gridPos": {
+        "h": 5,
+        "w": 20,
+        "x": 0,
+        "y": 18
+      },
+      "id": 95,
+      "libraryPanel": {
+        "name": "CPU Utilization",
+        "uid": "EYzuim-nk"
+      },
+      "title": "CPU Utilization"
+    },
+    {
+      "collapsed": false,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "000000001"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 23
+      },
+      "id": 39,
+      "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "000000001"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Server Memory Utilization",
+      "type": "row"
+    },
+    {
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 0,
+        "y": 24
+      },
+      "id": 111,
+      "libraryPanel": {
+        "name": "Total RAM",
+        "uid": "h70HT-MVk"
+      },
+      "title": "Total RAM"
+    },
+    {
+      "gridPos": {
+        "h": 4,
+        "w": 5,
+        "x": 4,
+        "y": 24
+      },
+      "id": 113,
+      "libraryPanel": {
+        "name": "Current Available Memory",
+        "uid": "IdPNoaM4z"
+      },
+      "title": "Current Available Memory"
+    },
+    {
+      "gridPos": {
+        "h": 4,
+        "w": 5,
+        "x": 9,
+        "y": 24
+      },
+      "id": 115,
+      "libraryPanel": {
+        "name": "Current Cached Memory",
+        "uid": "xJqNoaMVk"
+      },
+      "title": "Current Cached Memory"
+    },
+    {
+      "gridPos": {
+        "h": 4,
+        "w": 5,
+        "x": 14,
+        "y": 24
+      },
+      "id": 117,
+      "libraryPanel": {
+        "name": "Current Swap Memory",
+        "uid": "yC7vT-GVz"
+      },
+      "title": "Current Swap Memory"
+    },
+    {
+      "gridPos": {
+        "h": 4,
+        "w": 5,
+        "x": 19,
+        "y": 24
+      },
+      "id": 119,
+      "libraryPanel": {
+        "name": "Current Used Memory",
+        "uid": "vDJvTaM4k"
+      },
+      "title": "Current Used Memory"
+    },
+    {
+      "gridPos": {
+        "h": 7,
+        "w": 4,
+        "x": 0,
+        "y": 28
+      },
+      "id": 121,
+      "libraryPanel": {
+        "name": "Current Memory Utilization",
+        "uid": "rYQvTaG4k"
+      },
+      "title": "Current Memory Utilization"
+    },
+    {
+      "gridPos": {
+        "h": 7,
+        "w": 20,
+        "x": 4,
+        "y": 28
+      },
+      "id": 97,
+      "libraryPanel": {
+        "name": "Memory Utilization",
+        "uid": "AFqNH6y7z"
+      },
+      "title": "Memory Utilization"
+    },
+    {
+      "collapsed": false,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "000000001"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 35
+      },
+      "id": 17,
+      "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "000000001"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Server Volumes Detail",
+      "type": "row"
+    },
+    {
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 36
+      },
+      "id": 123,
+      "libraryPanel": {
+        "name": "Filesystem Fullness",
+        "uid": "89VOT-GVz"
+      },
+      "title": "Filesystem Fullness"
+    },
+    {
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 42
+      },
+      "id": 125,
+      "libraryPanel": {
+        "name": "Volume Read/Write Bytes",
+        "uid": "ZUHbo-MVz"
+      },
+      "title": "Volume Read/Write Bytes"
+    },
+    {
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 49
+      },
+      "id": 127,
+      "libraryPanel": {
+        "name": "Volume Read/Write Ops",
+        "uid": "zbAxoaGVz"
+      },
+      "title": "Volume Read/Write Ops"
+    },
+    {
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 56
+      },
+      "id": 129,
+      "libraryPanel": {
+        "name": "Volume Total Read/Write Time",
+        "uid": "_lPxTaM4k"
+      },
+      "title": "Volume Total Read/Write Time"
+    },
+    {
+      "collapsed": false,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "000000001"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 63
+      },
+      "id": 20,
+      "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "000000001"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Server Network Traffic Detail",
+      "type": "row"
+    },
+    {
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 64
+      },
+      "id": 131,
+      "libraryPanel": {
+        "name": "Network Traffic",
+        "uid": "X_6xTaGVz"
+      },
+      "title": "Network Traffic"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 39,
+  "tags": [
+    "Server"
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-3h",
+    "to": "now-1m"
+  },
+  "timepicker": {
+    "nowDelay": "1m",
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d",
+      "2d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "browser",
+  "title": "Observability",
+  "uid": "swQF-UG4z",
+  "version": 5,
+  "weekStart": ""
+}

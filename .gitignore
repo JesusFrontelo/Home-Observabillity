@@ -1,0 +1,4 @@
+/grafana.db
+/grafana/data/grafana.db
+/grafana/data/grafana.db-shm
+/grafana/data/grafana.db-wal

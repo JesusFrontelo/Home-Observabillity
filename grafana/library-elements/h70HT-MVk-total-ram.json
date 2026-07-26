@@ -1,0 +1,110 @@
+{
+  "uid": "h70HT-MVk",
+  "name": "Total RAM",
+  "kind": 1,
+  "type": "stat",
+  "description": "",
+  "version": 2,
+  "folderUid": "",
+  "model": {
+    "datasource": {
+      "default": true,
+      "type": "prometheus",
+      "uid": "be1q3vh59ue4gd"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "thresholds"
+        },
+        "decimals": 1,
+        "mappings": [
+          {
+            "options": {
+              "match": "null",
+              "result": {
+                "text": "N/A"
+              }
+            },
+            "type": "special"
+          }
+        ],
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "red",
+              "value": 80
+            }
+          ]
+        },
+        "unit": "bytes"
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 4,
+      "w": 4,
+      "x": 0,
+      "y": 24
+    },
+    "id": 111,
+    "maxDataPoints": 100,
+    "options": {
+      "colorMode": "none",
+      "graphMode": "none",
+      "justifyMode": "auto",
+      "orientation": "horizontal",
+      "percentChangeColorMode": "standard",
+      "reduceOptions": {
+        "calcs": [
+          "lastNotNull"
+        ],
+        "fields": "",
+        "values": false
+      },
+      "showPercentChange": false,
+      "text": {},
+      "textMode": "auto",
+      "wideLayout": true
+    },
+    "pluginVersion": "11.2.2",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "exemplar": false,
+        "expr": "node_memory_MemTotal_bytes{}",
+        "format": "time_series",
+        "instant": true,
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "",
+        "refId": "A"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "exemplar": false,
+        "expr": "windows_cs_physical_memory_bytes{instance=\"$server\"}",
+        "hide": false,
+        "instant": true,
+        "interval": "",
+        "legendFormat": "",
+        "refId": "C"
+      }
+    ],
+    "title": "Total RAM",
+    "type": "stat"
+  }
+}

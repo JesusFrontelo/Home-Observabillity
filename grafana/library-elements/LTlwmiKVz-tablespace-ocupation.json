@@ -1,0 +1,82 @@
+{
+  "uid": "LTlwmiKVz",
+  "name": "Tablespace Ocupation",
+  "kind": 1,
+  "type": "piechart",
+  "description": "",
+  "version": 1,
+  "folderUid": "",
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "be1q3vh59ue4gd"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "custom": {
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          }
+        },
+        "links": [],
+        "mappings": [],
+        "min": 0,
+        "unit": "decmbytes"
+      },
+      "overrides": []
+    },
+    "libraryPanel": {
+      "uid": "LTlwmiKVz"
+    },
+    "options": {
+      "legend": {
+        "displayMode": "table",
+        "placement": "bottom",
+        "showLegend": true,
+        "values": [
+          "value"
+        ]
+      },
+      "pieType": "donut",
+      "reduceOptions": {
+        "calcs": [
+          "lastNotNull"
+        ],
+        "fields": "",
+        "values": false
+      },
+      "tooltip": {
+        "maxHeight": 600,
+        "mode": "single",
+        "sort": "none"
+      }
+    },
+    "pluginVersion": "8.3.3",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "exemplar": false,
+        "expr": "oracledb_tablespace_used_mb{dbinstance_identifier=\"$RDS\",Environment=\"$Environment\"}",
+        "format": "time_series",
+        "instant": true,
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "{{ tablespace }}",
+        "range": false,
+        "refId": "A"
+      }
+    ],
+    "title": "Tablespace Ocupation",
+    "type": "piechart"
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "uid": "Ge2v2qGVk",
+  "name": "EC2 Stopped",
+  "kind": 1,
+  "type": "stat",
+  "description": "",
+  "version": 1,
+  "folderUid": "",
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "be1q3vh59ue4gd"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "thresholds"
+        },
+        "decimals": 0,
+        "mappings": [
+          {
+            "options": {
+              "match": "null",
+              "result": {
+                "index": 0,
+                "text": "0"
+              }
+            },
+            "type": "special"
+          }
+        ],
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "#299c46",
+              "value": null
+            },
+            {
+              "color": "#299c46",
+              "value": 0
+            },
+            {
+              "color": "#d44a3a",
+              "value": 1
+            }
+          ]
+        },
+        "unit": "none"
+      },
+      "overrides": []
+    },
+    "libraryPanel": {
+      "uid": "Ge2v2qGVk"
+    },
+    "maxDataPoints": 100,
+    "options": {
+      "colorMode": "background",
+      "graphMode": "none",
+      "justifyMode": "auto",
+      "orientation": "horizontal",
+      "reduceOptions": {
+        "calcs": [],
+        "fields": "",
+        "values": false
+      },
+      "showPercentChange": false,
+      "textMode": "auto",
+      "wideLayout": true
+    },
+    "pluginVersion": "11.0.0",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "exemplar": false,
+        "expr": "count(up{Environment=\"$Environment\",tag_Application=\"$Application\",job!~\"JMX.*|Process.*\",status=\"stopped\"})",
+        "format": "time_series",
+        "instant": true,
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "",
+        "range": false,
+        "refId": "A"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "exemplar": false,
+        "expr": "count(up{Environment=\"$Environment\",Product=\"$Product\",job!~\"JMX.*|Process.*\"})-count(up{Environment=\"$Environment\",Product=\"$Product\",status=\"running\",job!~\"JMX.*|Process.*\"})",
+        "format": "time_series",
+        "hide": false,
+        "instant": true,
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "",
+        "range": false,
+        "refId": "B"
+      }
+    ],
+    "title": "EC2 Stopped",
+    "type": "stat"
+  }
+}

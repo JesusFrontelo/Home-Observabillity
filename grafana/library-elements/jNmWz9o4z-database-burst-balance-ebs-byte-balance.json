@@ -1,0 +1,135 @@
+{
+  "uid": "jNmWz9o4z",
+  "name": "Database Burst Balance / EBS Byte Balance",
+  "kind": 1,
+  "type": "timeseries",
+  "description": "",
+  "version": 1,
+  "folderUid": "",
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "be1q3vh59ue4gd"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "thresholds"
+        },
+        "custom": {
+          "axisCenteredZero": false,
+          "axisColorMode": "text",
+          "axisLabel": "",
+          "axisPlacement": "auto",
+          "barAlignment": 0,
+          "drawStyle": "line",
+          "fillOpacity": 0,
+          "gradientMode": "scheme",
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "lineInterpolation": "linear",
+          "lineWidth": 1,
+          "pointSize": 5,
+          "scaleDistribution": {
+            "type": "linear"
+          },
+          "showPoints": "auto",
+          "spanNulls": false,
+          "stacking": {
+            "group": "A",
+            "mode": "none"
+          },
+          "thresholdsStyle": {
+            "mode": "off"
+          }
+        },
+        "decimals": 2,
+        "mappings": [],
+        "max": 100,
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "#f2495c",
+              "value": null
+            },
+            {
+              "color": "#EAB839",
+              "value": 20
+            },
+            {
+              "color": "#73bf69",
+              "value": 30
+            }
+          ]
+        },
+        "unit": "percent"
+      },
+      "overrides": [
+        {
+          "matcher": {
+            "id": "byRegexp",
+            "options": ".* EBS Byte Balance"
+          },
+          "properties": [
+            {
+              "id": "color",
+              "value": {
+                "fixedColor": "light-blue",
+                "mode": "fixed"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "libraryPanel": {
+      "uid": "jNmWz9o4z"
+    },
+    "options": {
+      "legend": {
+        "calcs": [],
+        "displayMode": "list",
+        "placement": "bottom",
+        "showLegend": true
+      },
+      "tooltip": {
+        "mode": "single",
+        "sort": "none"
+      }
+    },
+    "pluginVersion": "9.2.4",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "expr": "aws_rds_burst_balance_average{dbinstance_identifier=~\"$RDS\",job=\"$job\"}",
+        "format": "time_series",
+        "legendFormat": "{{dbinstance_identifier}} Burst Balance",
+        "range": true,
+        "refId": "A"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "expr": "aws_rds_ebsbyte_balance__average{dbinstance_identifier=~\"$RDS\",job=\"$job\"}",
+        "hide": false,
+        "legendFormat": "{{dbinstance_identifier}} EBS Byte Balance",
+        "range": true,
+        "refId": "B"
+      }
+    ],
+    "title": "Database Burst Balance / EBS Byte Balance",
+    "type": "timeseries"
+  }
+}

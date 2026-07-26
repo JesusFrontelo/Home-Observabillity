@@ -1,0 +1,245 @@
+{
+  "uid": "rYQvTaG4k",
+  "name": "Current Memory Utilization",
+  "kind": 1,
+  "type": "piechart",
+  "description": "",
+  "version": 2,
+  "folderUid": "",
+  "model": {
+    "datasource": {
+      "default": true,
+      "type": "prometheus",
+      "uid": "be1q3vh59ue4gd"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "custom": {
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          }
+        },
+        "decimals": 2,
+        "mappings": [],
+        "unit": "short"
+      },
+      "overrides": [
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Available"
+          },
+          "properties": [
+            {
+              "id": "color",
+              "value": {
+                "fixedColor": "#fce2de",
+                "mode": "fixed"
+              }
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Cached"
+          },
+          "properties": [
+            {
+              "id": "color",
+              "value": {
+                "fixedColor": "#962d82",
+                "mode": "fixed"
+              }
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Swap"
+          },
+          "properties": [
+            {
+              "id": "color",
+              "value": {
+                "fixedColor": "#e24d42",
+                "mode": "fixed"
+              }
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Used"
+          },
+          "properties": [
+            {
+              "id": "color",
+              "value": {
+                "fixedColor": "#82b5d8",
+                "mode": "fixed"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "gridPos": {
+      "h": 7,
+      "w": 4,
+      "x": 0,
+      "y": 28
+    },
+    "id": 121,
+    "interval": null,
+    "maxDataPoints": 3,
+    "options": {
+      "legend": {
+        "calcs": [],
+        "displayMode": "table",
+        "placement": "bottom",
+        "showLegend": true,
+        "values": [
+          "value",
+          "percent"
+        ]
+      },
+      "pieType": "donut",
+      "reduceOptions": {
+        "calcs": [
+          "lastNotNull"
+        ],
+        "fields": "",
+        "values": false
+      },
+      "tooltip": {
+        "mode": "single",
+        "sort": "none"
+      }
+    },
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "exemplar": false,
+        "expr": "(((node_memory_MemFree_bytes{}) + (node_memory_Cached_bytes{})) / (node_memory_MemTotal_bytes{})) * 100",
+        "format": "time_series",
+        "instant": true,
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "Available",
+        "refId": "A"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "exemplar": false,
+        "expr": "((node_memory_MemTotal_bytes{} - node_memory_MemFree_bytes{} - node_memory_Cached_bytes{}) / (node_memory_MemTotal_bytes{})) * 100",
+        "format": "time_series",
+        "instant": true,
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "Used",
+        "refId": "B"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "exemplar": false,
+        "expr": "((node_memory_Cached_bytes{}) / (node_memory_MemTotal_bytes{})) * 100",
+        "format": "time_series",
+        "instant": true,
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "Cached",
+        "refId": "D"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "exemplar": false,
+        "expr": "((node_memory_SwapTotal_bytes{}) / (node_memory_MemTotal_bytes{})) * 100",
+        "format": "time_series",
+        "instant": true,
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "Swap",
+        "refId": "C"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "exemplar": false,
+        "expr": "(windows_memory_available_bytes{instance=\"$server\"} / (windows_cs_physical_memory_bytes{instance=\"$server\"})) * 100",
+        "hide": false,
+        "instant": true,
+        "interval": "",
+        "legendFormat": "Available",
+        "refId": "I"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "exemplar": false,
+        "expr": "((windows_cs_physical_memory_bytes{instance=\"$server\"} - windows_memory_available_bytes{instance=\"$server\"} - windows_memory_cache_bytes{instance=\"$server\"} - windows_memory_swap_pages_written_total {instance=\"$server\"}) / (windows_cs_physical_memory_bytes{instance=\"$server\"})) * 100",
+        "hide": false,
+        "instant": true,
+        "interval": "",
+        "legendFormat": "Used",
+        "refId": "J"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "exemplar": false,
+        "expr": "((windows_memory_cache_bytes{instance=\"$server\"}) / (windows_cs_physical_memory_bytes{instance=\"$server\"})) * 100",
+        "hide": false,
+        "instant": true,
+        "interval": "",
+        "legendFormat": "Cached",
+        "refId": "K"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "exemplar": false,
+        "expr": "(windows_memory_swap_pages_written_total{instance=\"$server\"} / (windows_cs_physical_memory_bytes{instance=\"$server\"})) * 100",
+        "hide": false,
+        "instant": true,
+        "interval": "",
+        "legendFormat": "Swap",
+        "refId": "L"
+      }
+    ],
+    "title": "Current Memory Utilization",
+    "type": "piechart"
+  }
+}

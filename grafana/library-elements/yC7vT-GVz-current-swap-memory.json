@@ -1,0 +1,121 @@
+{
+  "uid": "yC7vT-GVz",
+  "name": "Current Swap Memory",
+  "kind": 1,
+  "type": "gauge",
+  "description": "",
+  "version": 2,
+  "folderUid": "",
+  "model": {
+    "datasource": {
+      "default": true,
+      "type": "prometheus",
+      "uid": "be1q3vh59ue4gd"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "thresholds"
+        },
+        "mappings": [
+          {
+            "options": {
+              "NaN": {
+                "index": 1,
+                "text": "0%"
+              }
+            },
+            "type": "value"
+          },
+          {
+            "options": {
+              "match": "null",
+              "result": {
+                "index": 0,
+                "text": "N/A"
+              }
+            },
+            "type": "special"
+          }
+        ],
+        "max": 100,
+        "min": 0,
+        "noValue": "0",
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "#299c46",
+              "value": null
+            },
+            {
+              "color": "rgba(237, 129, 40, 0.89)",
+              "value": 85
+            },
+            {
+              "color": "#d44a3a",
+              "value": 95
+            }
+          ]
+        },
+        "unit": "percent"
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 4,
+      "w": 5,
+      "x": 14,
+      "y": 24
+    },
+    "id": 117,
+    "maxDataPoints": 100,
+    "options": {
+      "orientation": "horizontal",
+      "reduceOptions": {
+        "calcs": [
+          "lastNotNull"
+        ],
+        "fields": "",
+        "values": false
+      },
+      "showThresholdLabels": false,
+      "showThresholdMarkers": true,
+      "text": {}
+    },
+    "pluginVersion": "9.1.5",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "exemplar": false,
+        "expr": "((node_memory_SwapTotal_bytes{} - node_memory_SwapFree_bytes{}) / (node_memory_SwapTotal_bytes{})) * 100",
+        "format": "time_series",
+        "instant": true,
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "",
+        "refId": "A"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "exemplar": false,
+        "expr": "(windows_memory_swap_pages_written_total{instance=\"$server\"} / (windows_cs_physical_memory_bytes{instance=\"$server\"})) * 100",
+        "hide": false,
+        "instant": true,
+        "interval": "",
+        "legendFormat": "",
+        "refId": "C"
+      }
+    ],
+    "title": "Current Swap Memory",
+    "type": "gauge"
+  }
+}

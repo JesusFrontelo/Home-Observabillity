@@ -7,6 +7,8 @@ After=network-online.target
 
 [Service]
 EnvironmentFile=/opt/grafana/packaging/deb/default/grafana-server
+# Optional secrets file (keep out of Git)
+EnvironmentFile=-/etc/default/grafana-secrets
 User=prometheus
 Group=prometheus
 Type=simple

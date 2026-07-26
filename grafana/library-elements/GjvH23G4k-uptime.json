@@ -1,0 +1,100 @@
+{
+  "uid": "GjvH23G4k",
+  "name": "Uptime",
+  "kind": 1,
+  "type": "stat",
+  "description": "",
+  "version": 2,
+  "folderUid": "",
+  "model": {
+    "datasource": {
+      "default": true,
+      "type": "prometheus",
+      "uid": "be1q3vh59ue4gd"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "thresholds"
+        },
+        "mappings": [
+          {
+            "options": {
+              "match": "null",
+              "result": {
+                "index": 0,
+                "text": "0"
+              }
+            },
+            "type": "special"
+          }
+        ],
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "#d44a3a",
+              "value": null
+            },
+            {
+              "color": "rgba(237, 129, 40, 0.89)",
+              "value": 1000
+            },
+            {
+              "color": "#299c46",
+              "value": 2000
+            }
+          ]
+        },
+        "unit": "s"
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 3,
+      "w": 6,
+      "x": 18,
+      "y": 1
+    },
+    "id": 145,
+    "maxDataPoints": 100,
+    "options": {
+      "colorMode": "background",
+      "graphMode": "none",
+      "justifyMode": "auto",
+      "orientation": "horizontal",
+      "percentChangeColorMode": "standard",
+      "reduceOptions": {
+        "calcs": [
+          "lastNotNull"
+        ],
+        "fields": "",
+        "values": false
+      },
+      "showPercentChange": false,
+      "textMode": "auto",
+      "wideLayout": true
+    },
+    "pluginVersion": "11.2.2",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "exemplar": false,
+        "expr": "node_time_seconds{} - node_boot_time_seconds{}",
+        "format": "time_series",
+        "instant": true,
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "",
+        "refId": "A"
+      }
+    ],
+    "title": "Uptime",
+    "type": "stat"
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "uid": "zbAxoaGVz",
+  "name": "Volume Read/Write Ops",
+  "kind": 1,
+  "type": "timeseries",
+  "description": "",
+  "version": 2,
+  "folderUid": "",
+  "model": {
+    "datasource": {
+      "default": true,
+      "type": "prometheus",
+      "uid": "be1q3vh59ue4gd"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "custom": {
+          "axisBorderShow": false,
+          "axisCenteredZero": false,
+          "axisColorMode": "text",
+          "axisLabel": "read ops/min (-) / write ops/min (+)",
+          "axisPlacement": "auto",
+          "barAlignment": 0,
+          "barWidthFactor": 0.6,
+          "drawStyle": "line",
+          "fillOpacity": 10,
+          "gradientMode": "none",
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "insertNulls": false,
+          "lineInterpolation": "linear",
+          "lineWidth": 2,
+          "pointSize": 5,
+          "scaleDistribution": {
+            "type": "linear"
+          },
+          "showPoints": "never",
+          "spanNulls": false,
+          "stacking": {
+            "group": "A",
+            "mode": "none"
+          },
+          "thresholdsStyle": {
+            "mode": "off"
+          }
+        },
+        "links": [],
+        "mappings": [],
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "red",
+              "value": 80
+            }
+          ]
+        },
+        "unit": "opm"
+      },
+      "overrides": [
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "{instance=\"172.17.0.1:9100\"}"
+          },
+          "properties": [
+            {
+              "id": "unit",
+              "value": "bytes"
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "io time"
+          },
+          "properties": [
+            {
+              "id": "unit",
+              "value": "bytes"
+            }
+          ]
+        }
+      ]
+    },
+    "gridPos": {
+      "h": 7,
+      "w": 24,
+      "x": 0,
+      "y": 49
+    },
+    "id": 127,
+    "options": {
+      "legend": {
+        "calcs": [
+          "mean",
+          "lastNotNull"
+        ],
+        "displayMode": "table",
+        "placement": "right",
+        "showLegend": true
+      },
+      "tooltip": {
+        "mode": "single",
+        "sort": "none"
+      }
+    },
+    "pluginVersion": "8.3.3",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "expr": "(irate(node_disk_reads_completed_total{}[5m]))",
+        "format": "time_series",
+        "hide": false,
+        "intervalFactor": 1,
+        "legendFormat": "{{ device }} Read ops",
+        "range": true,
+        "refId": "B"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "expr": "(irate(node_disk_writes_completed_total{}[5m]))",
+        "format": "time_series",
+        "hide": false,
+        "intervalFactor": 1,
+        "legendFormat": "{{ device }} Write ops",
+        "range": true,
+        "refId": "D"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "exemplar": true,
+        "expr": "irate(windows_logical_disk_split_ios_total{instance=~\"$server\", volume !~\"HarddiskVolume.+\"}[5m])",
+        "format": "time_series",
+        "hide": false,
+        "interval": "",
+        "legendFormat": "{{volume}}",
+        "refId": "C"
+      }
+    ],
+    "title": "Volume Read/Write Ops",
+    "type": "timeseries"
+  }
+}

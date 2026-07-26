@@ -1,0 +1,167 @@
+{
+  "uid": "_lPxTaM4k",
+  "name": "Volume Total Read/Write Time",
+  "kind": 1,
+  "type": "timeseries",
+  "description": "",
+  "version": 2,
+  "folderUid": "",
+  "model": {
+    "datasource": {
+      "default": true,
+      "type": "prometheus",
+      "uid": "be1q3vh59ue4gd"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "custom": {
+          "axisBorderShow": false,
+          "axisCenteredZero": false,
+          "axisColorMode": "text",
+          "axisLabel": "read total time (-) / write total time (+)",
+          "axisPlacement": "auto",
+          "barAlignment": 0,
+          "barWidthFactor": 0.6,
+          "drawStyle": "line",
+          "fillOpacity": 10,
+          "gradientMode": "none",
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "insertNulls": false,
+          "lineInterpolation": "linear",
+          "lineWidth": 1,
+          "pointSize": 5,
+          "scaleDistribution": {
+            "type": "linear"
+          },
+          "showPoints": "never",
+          "spanNulls": true,
+          "stacking": {
+            "group": "A",
+            "mode": "none"
+          },
+          "thresholdsStyle": {
+            "mode": "off"
+          }
+        },
+        "links": [],
+        "mappings": [],
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "red",
+              "value": 80
+            }
+          ]
+        },
+        "unit": "ms"
+      },
+      "overrides": [
+        {
+          "matcher": {
+            "id": "byRegexp",
+            "options": "/Read/"
+          },
+          "properties": [
+            {
+              "id": "custom.stacking",
+              "value": {
+                "group": "A",
+                "mode": "normal"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "gridPos": {
+      "h": 7,
+      "w": 24,
+      "x": 0,
+      "y": 56
+    },
+    "id": 129,
+    "options": {
+      "legend": {
+        "calcs": [
+          "mean",
+          "lastNotNull"
+        ],
+        "displayMode": "table",
+        "placement": "right",
+        "showLegend": true
+      },
+      "tooltip": {
+        "mode": "single",
+        "sort": "none"
+      }
+    },
+    "pluginVersion": "8.3.3",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "expr": "(irate(node_disk_read_time_seconds_total{}[5m]))",
+        "format": "time_series",
+        "intervalFactor": 1,
+        "legendFormat": "{{ device }} Read time",
+        "range": true,
+        "refId": "A"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "expr": "(irate(node_disk_write_time_seconds_total{}[5m]))",
+        "format": "time_series",
+        "intervalFactor": 1,
+        "legendFormat": "{{ device }} Write time",
+        "range": true,
+        "refId": "B"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "exemplar": true,
+        "expr": "(irate(windows_logical_disk_read_seconds_total{instance=\"$server\",volume!=\"HarddiskVolume1\"}[5m]))",
+        "hide": false,
+        "interval": "",
+        "legendFormat": "Read time {{volume}}",
+        "refId": "E"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "exemplar": true,
+        "expr": "(irate(windows_logical_disk_write_seconds_total{instance=\"$server\",volume!=\"HarddiskVolume1\"}[5m]))",
+        "hide": false,
+        "interval": "",
+        "legendFormat": "Write time {{volume}}",
+        "refId": "F"
+      }
+    ],
+    "title": "Volume Total Read/Write Time",
+    "type": "timeseries"
+  }
+}

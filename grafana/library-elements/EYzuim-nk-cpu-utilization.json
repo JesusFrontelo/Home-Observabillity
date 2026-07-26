@@ -1,0 +1,158 @@
+{
+  "uid": "EYzuim-nk",
+  "name": "CPU Utilization",
+  "kind": 1,
+  "type": "timeseries",
+  "description": "",
+  "version": 2,
+  "folderUid": "",
+  "model": {
+    "datasource": {
+      "default": true,
+      "type": "prometheus",
+      "uid": "be1q3vh59ue4gd"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "thresholds"
+        },
+        "custom": {
+          "axisBorderShow": false,
+          "axisCenteredZero": false,
+          "axisColorMode": "text",
+          "axisLabel": "",
+          "axisPlacement": "auto",
+          "barAlignment": 0,
+          "barWidthFactor": 0.6,
+          "drawStyle": "line",
+          "fillOpacity": 10,
+          "gradientMode": "scheme",
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "insertNulls": false,
+          "lineInterpolation": "linear",
+          "lineStyle": {
+            "fill": "solid"
+          },
+          "lineWidth": 1,
+          "pointSize": 5,
+          "scaleDistribution": {
+            "type": "linear"
+          },
+          "showPoints": "never",
+          "spanNulls": false,
+          "stacking": {
+            "group": "A",
+            "mode": "none"
+          },
+          "thresholdsStyle": {
+            "mode": "off"
+          }
+        },
+        "links": [],
+        "mappings": [],
+        "max": 100,
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "#EAB839",
+              "value": 80
+            },
+            {
+              "color": "red",
+              "value": 90
+            }
+          ]
+        },
+        "unit": "percent"
+      },
+      "overrides": [
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Used"
+          },
+          "properties": [
+            {
+              "id": "color",
+              "value": {
+                "fixedColor": "#890f02",
+                "mode": "thresholds",
+                "seriesBy": "last"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "gridPos": {
+      "h": 5,
+      "w": 20,
+      "x": 0,
+      "y": 18
+    },
+    "id": 95,
+    "options": {
+      "legend": {
+        "calcs": [
+          "lastNotNull"
+        ],
+        "displayMode": "table",
+        "placement": "right",
+        "showLegend": true
+      },
+      "tooltip": {
+        "maxHeight": 600,
+        "mode": "single",
+        "sort": "none"
+      }
+    },
+    "pluginVersion": "8.3.3",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "exemplar": true,
+        "expr": "((1- (avg by(name,Environment,Domain,Application) (irate(node_cpu_seconds_total{mode=\"idle\"}[15m]))))* 100)",
+        "format": "time_series",
+        "hide": false,
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "Used",
+        "range": true,
+        "refId": "B"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "exemplar": true,
+        "expr": "(100-(avg by (instance) (irate(windows_cpu_time_total{mode=~\"idle\",instance=\"$server\"}[5m]))) * 100)",
+        "hide": false,
+        "interval": "",
+        "legendFormat": "Used",
+        "range": true,
+        "refId": "A"
+      }
+    ],
+    "timeFrom": null,
+    "timeShift": null,
+    "title": "CPU Utilization",
+    "type": "timeseries"
+  }
+}

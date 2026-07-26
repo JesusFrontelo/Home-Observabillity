@@ -37,3 +37,74 @@ Además de la instalación base de Node-RED, en el directorio de usuario (`/home
 	- `/opt/alertmanager/alertmanager.yml`
 	- `/opt/modbus_exporter/modbus.yml`
 	- Configuración y flujos de Node-RED (userDir)
+
+## Grafana: seguridad para subir a GitHub
+
+Riesgos detectados en `grafana/conf/defaults.ini` y solución aplicada:
+
+- Credenciales en texto plano (`admin_user`, `admin_password`) y `secret_key` en repositorio.
+	- Solución: se han sustituido por variables de entorno:
+		- `GF_SECURITY_ADMIN_USER`
+		- `GF_SECURITY_ADMIN_PASSWORD`
+		- `GF_SECURITY_SECRET_KEY`
+- `enforce_domain` desactivado.
+	- Solución: se ha activado (`enforce_domain = true`) para reducir riesgo de DNS rebinding.
+
+Buenas prácticas recomendadas adicionales:
+
+- No guardar secretos en GitHub Actions en texto plano. Usar `Repository secrets`.
+- Para despliegue con systemd, usar un fichero local de secretos basado en:
+	- `systemd/grafana-secrets.env.example`
+	- Ruta en servidor: `/etc/default/grafana-secrets`
+- Si Grafana se publica por HTTPS, activar también:
+	- `cookie_secure = true`
+	- `strict_transport_security = true`
+
+## Grafana: dashboards JSON sin duplicados en despliegue
+
+Se ha habilitado provisioning por archivos en:
+
+- `grafana/provisioning/dashboards/dashboards.yml`
+
+Configuración clave:
+
+- Fuente de dashboards: `/opt/grafana/dashboards`
+- Carpeta en Grafana: `Provisioned`
+- `allowUiUpdates: false` para evitar deriva entre UI y Git
+- `disableDeletion: false` para que eliminar un JSON en Git también lo elimine en Grafana
+
+Para evitar duplicados:
+
+- Mantener el campo `uid` en cada JSON (ya viene en los exportados).
+- No duplicar un dashboard con distinto `uid` y mismo título.
+- Si migras una instancia que ya tenía dashboards manuales, hacer una limpieza inicial de duplicados por título/uid antes del primer despliegue provisionado.
+
+## Grafana: recursos extraídos desde la base de datos
+
+Además de dashboards, se han exportado estos recursos para no depender de `grafana.db`:
+
+- Datasource provisioning:
+	- `grafana/provisioning/datasources/datasources.yml`
+- Library Panels:
+	- `grafana/library-elements/*.json`
+- Playlists:
+	- `grafana/playlists/*.json`
+- Configuración de alertmanager de Grafana:
+	- `grafana/alerting/*.json`
+
+Regeneración automática (cuando cambie `grafana.db`):
+
+- `./scripts/export_grafana_state.py`
+
+## Orden recomendado de despliegue de Grafana
+
+1. Configurar secretos y arranque de Grafana (`GF_SECURITY_*`, `defaults.ini`, `systemd`).
+2. Desplegar datasources por provisioning (`grafana/provisioning/datasources`).
+3. Cargar Library Panels (desde `grafana/library-elements`) antes de dashboards que los usen.
+4. Desplegar dashboards provisionados (`grafana/dashboards`).
+5. Aplicar playlists y configuración de alerting si se usan.
+
+Notas:
+
+- El dashboard `Observability` (uid `swQF-UG4z`) usa Library Panels.
+- Si no se cargan primero los Library Panels, ese dashboard puede aparecer incompleto o con errores.

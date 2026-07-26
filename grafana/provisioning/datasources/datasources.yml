@@ -1,0 +1,13 @@
+apiVersion: 1
+datasources:
+  - name: "prometheus"
+    uid: "be1q3vh59ue4gd"
+    type: "prometheus"
+    access: "proxy"
+    url: "http://localhost:9090"
+    isDefault: true
+    editable: false
+    basicAuth: false
+    withCredentials: false
+    jsonData:
+      httpMethod: "POST"

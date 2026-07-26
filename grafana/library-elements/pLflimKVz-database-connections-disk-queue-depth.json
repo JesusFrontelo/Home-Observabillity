@@ -1,0 +1,227 @@
+{
+  "uid": "pLflimKVz",
+  "name": "Database Connections / Disk Queue Depth",
+  "kind": 1,
+  "type": "timeseries",
+  "description": "<b>Disk Queue Depth</b>: el n\u00famero de solicitudes de I/O en la cola esperando ser atendidas. Estas son solicitudes de I/O que han sido enviadas por la aplicaci\u00f3n pero no han sido enviadas al dispositivo porque el el dispositivo est\u00e1 ocupado atendiendo otras solicitudes de I/O. ",
+  "version": 1,
+  "folderUid": "",
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "be1q3vh59ue4gd"
+    },
+    "description": "<b>Disk Queue Depth</b>: el n\u00famero de solicitudes de I/O en la cola esperando ser atendidas. Estas son solicitudes de I/O que han sido enviadas por la aplicaci\u00f3n pero no han sido enviadas al dispositivo porque el el dispositivo est\u00e1 ocupado atendiendo otras solicitudes de I/O. ",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "custom": {
+          "axisCenteredZero": false,
+          "axisColorMode": "text",
+          "axisLabel": "",
+          "axisPlacement": "auto",
+          "barAlignment": 0,
+          "drawStyle": "line",
+          "fillOpacity": 10,
+          "gradientMode": "none",
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "lineInterpolation": "linear",
+          "lineWidth": 2,
+          "pointSize": 5,
+          "scaleDistribution": {
+            "type": "linear"
+          },
+          "showPoints": "never",
+          "spanNulls": true,
+          "stacking": {
+            "group": "A",
+            "mode": "none"
+          },
+          "thresholdsStyle": {
+            "mode": "off"
+          }
+        },
+        "links": [],
+        "mappings": [],
+        "min": 0,
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "red",
+              "value": 80
+            }
+          ]
+        },
+        "unit": "none"
+      },
+      "overrides": []
+    },
+    "libraryPanel": {
+      "uid": "pLflimKVz"
+    },
+    "options": {
+      "legend": {
+        "calcs": [
+          "lastNotNull",
+          "max",
+          "min"
+        ],
+        "displayMode": "table",
+        "placement": "bottom",
+        "showLegend": true
+      },
+      "tooltip": {
+        "mode": "multi",
+        "sort": "none"
+      }
+    },
+    "pluginVersion": "9.1.5",
+    "targets": [
+      {
+        "alias": "",
+        "application": {
+          "filter": ""
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "dimensions": {
+          "DBInstanceIdentifier": "$dbinstanceidentifier"
+        },
+        "editorMode": "code",
+        "expr": "aws_rds_database_connections_average{dbinstance_identifier=~\"$RDS\",job=\"$job\"}",
+        "format": "time_series",
+        "functions": [],
+        "group": {
+          "filter": ""
+        },
+        "highResolution": false,
+        "host": {
+          "filter": ""
+        },
+        "intervalFactor": 1,
+        "item": {
+          "filter": ""
+        },
+        "legendFormat": "{{dbinstance_identifier}} Database Connections",
+        "metricEditorMode": 0,
+        "metricName": "DatabaseConnections",
+        "metricQueryType": 0,
+        "mode": 0,
+        "namespace": "AWS/RDS",
+        "options": {
+          "showDisabledItems": false
+        },
+        "period": "",
+        "range": true,
+        "refId": "A",
+        "region": "eu-west-1",
+        "statistic": "Average"
+      },
+      {
+        "alias": "",
+        "application": {
+          "filter": ""
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "dimensions": {
+          "DBInstanceIdentifier": "$dbinstanceidentifier"
+        },
+        "editorMode": "code",
+        "expr": "aws_rds_disk_queue_depth_average{dbinstance_identifier=~\"$RDS\",job=\"$job\"}",
+        "format": "time_series",
+        "functions": [],
+        "group": {
+          "filter": ""
+        },
+        "highResolution": false,
+        "host": {
+          "filter": ""
+        },
+        "intervalFactor": 1,
+        "item": {
+          "filter": ""
+        },
+        "legendFormat": "{{dbinstance_identifier}} DiskQueueDepth",
+        "metricEditorMode": 0,
+        "metricName": "DiskQueueDepth",
+        "metricQueryType": 0,
+        "mode": 0,
+        "namespace": "AWS/RDS",
+        "options": {
+          "showDisabledItems": false
+        },
+        "period": "",
+        "range": true,
+        "refId": "B",
+        "region": "eu-west-1",
+        "statistic": "Average"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "expr": "aws_rds_database_connections_average{dbcluster_identifier=~\"$RDS\",job=\"$job\"}",
+        "hide": false,
+        "legendFormat": "{{dbcluster_identifier}} Database Connections",
+        "range": true,
+        "refId": "C"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "expr": "aws_rds_disk_queue_depth_average{dbcluster_identifier=~\"$RDS\",job=\"$job\"}",
+        "hide": false,
+        "legendFormat": "{{dbinstance_identifier}} DiskQueueDepth",
+        "range": true,
+        "refId": "D"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "expr": "aws_docdb_database_connections_average{dbinstance_identifier=~\"$RDS\",job=\"$job\"}",
+        "hide": false,
+        "legendFormat": "{{dbinstance_identifier}}  Database Connections",
+        "range": true,
+        "refId": "E"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "expr": "aws_docdb_disk_queue_depth_average{dbinstance_identifier=~\"$RDS\",job=\"$job\"}",
+        "hide": false,
+        "legendFormat": "{{dbinstance_identifier}} DiskQueueDepth",
+        "range": true,
+        "refId": "F"
+      }
+    ],
+    "title": "Database Connections / Disk Queue Depth",
+    "type": "timeseries"
+  }
+}

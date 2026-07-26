@@ -1,0 +1,114 @@
+{
+  "uid": "TiUIoaM4k",
+  "name": "CPU Idle Load (5m)",
+  "kind": 1,
+  "type": "gauge",
+  "description": "",
+  "version": 2,
+  "folderUid": "",
+  "model": {
+    "datasource": {
+      "default": true,
+      "type": "prometheus",
+      "uid": "be1q3vh59ue4gd"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "thresholds"
+        },
+        "decimals": 2,
+        "mappings": [
+          {
+            "options": {
+              "match": "null",
+              "result": {
+                "text": "N/A"
+              }
+            },
+            "type": "special"
+          }
+        ],
+        "max": 100,
+        "min": 0,
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "#d44a3a",
+              "value": null
+            },
+            {
+              "color": "rgba(237, 129, 40, 0.89)",
+              "value": 15
+            },
+            {
+              "color": "#299c46",
+              "value": 5
+            }
+          ]
+        },
+        "unit": "percent"
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 4,
+      "w": 7,
+      "x": 13,
+      "y": 14
+    },
+    "id": 105,
+    "maxDataPoints": 100,
+    "options": {
+      "minVizHeight": 75,
+      "minVizWidth": 75,
+      "orientation": "horizontal",
+      "reduceOptions": {
+        "calcs": [
+          "lastNotNull"
+        ],
+        "fields": "",
+        "values": false
+      },
+      "showThresholdLabels": false,
+      "showThresholdMarkers": true,
+      "sizing": "auto",
+      "text": {}
+    },
+    "pluginVersion": "11.2.2",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "exemplar": false,
+        "expr": "(avg by (instance) (irate(node_cpu_seconds_total{mode=~\"idle\"}[5m])) * 100)",
+        "format": "time_series",
+        "hide": false,
+        "instant": true,
+        "intervalFactor": 1,
+        "range": false,
+        "refId": "A"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "exemplar": false,
+        "expr": "(avg by (instance) (irate(windows_cpu_time_total{instance=\"$server\",mode=~\"idle\"}[5m])) * 100)",
+        "hide": false,
+        "instant": true,
+        "interval": "",
+        "legendFormat": "",
+        "refId": "C"
+      }
+    ],
+    "title": "CPU Idle Load (5m)",
+    "type": "gauge"
+  }
+}

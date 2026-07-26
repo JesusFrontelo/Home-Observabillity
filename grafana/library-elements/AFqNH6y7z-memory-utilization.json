@@ -1,0 +1,270 @@
+{
+  "uid": "AFqNH6y7z",
+  "name": "Memory Utilization",
+  "kind": 1,
+  "type": "timeseries",
+  "description": "",
+  "version": 2,
+  "folderUid": "",
+  "model": {
+    "datasource": {
+      "default": true,
+      "type": "prometheus",
+      "uid": "be1q3vh59ue4gd"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "custom": {
+          "axisBorderShow": false,
+          "axisCenteredZero": false,
+          "axisColorMode": "text",
+          "axisLabel": "",
+          "axisPlacement": "auto",
+          "barAlignment": 0,
+          "barWidthFactor": 0.6,
+          "drawStyle": "line",
+          "fillOpacity": 10,
+          "gradientMode": "scheme",
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "insertNulls": false,
+          "lineInterpolation": "linear",
+          "lineWidth": 1,
+          "pointSize": 5,
+          "scaleDistribution": {
+            "type": "linear"
+          },
+          "showPoints": "never",
+          "spanNulls": true,
+          "stacking": {
+            "group": "A",
+            "mode": "none"
+          },
+          "thresholdsStyle": {
+            "mode": "off"
+          }
+        },
+        "links": [],
+        "mappings": [],
+        "max": 100,
+        "min": 0,
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "#EAB839",
+              "value": 85
+            },
+            {
+              "color": "red",
+              "value": 95
+            }
+          ]
+        },
+        "unit": "percent"
+      },
+      "overrides": [
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Available Memory"
+          },
+          "properties": [
+            {
+              "id": "color",
+              "value": {
+                "fixedColor": "#fce2de",
+                "mode": "fixed"
+              }
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Cached Memory"
+          },
+          "properties": [
+            {
+              "id": "color",
+              "value": {
+                "fixedColor": "#962d82",
+                "mode": "fixed"
+              }
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Swap Memory"
+          },
+          "properties": [
+            {
+              "id": "color",
+              "value": {
+                "fixedColor": "#e24d42",
+                "mode": "fixed"
+              }
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Used Memory"
+          },
+          "properties": [
+            {
+              "id": "color",
+              "value": {
+                "fixedColor": "#82b5d8",
+                "mode": "thresholds"
+              }
+            }
+          ]
+        },
+        {
+          "__systemRef": "hideSeriesFrom",
+          "matcher": {
+            "id": "byNames",
+            "options": {
+              "mode": "exclude",
+              "names": [
+                "Used Memory"
+              ],
+              "prefix": "All except:",
+              "readOnly": true
+            }
+          },
+          "properties": [
+            {
+              "id": "custom.hideFrom",
+              "value": {
+                "legend": false,
+                "tooltip": false,
+                "viz": true
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "gridPos": {
+      "h": 7,
+      "w": 20,
+      "x": 4,
+      "y": 28
+    },
+    "id": 97,
+    "options": {
+      "legend": {
+        "calcs": [
+          "mean",
+          "lastNotNull"
+        ],
+        "displayMode": "table",
+        "placement": "right",
+        "showLegend": true
+      },
+      "tooltip": {
+        "maxHeight": 600,
+        "mode": "single",
+        "sort": "none"
+      }
+    },
+    "pluginVersion": "8.3.3",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "expr": "((node_memory_MemTotal_bytes{} - node_memory_MemFree_bytes{} - node_memory_Cached_bytes{}) / (node_memory_MemTotal_bytes{})) * 100",
+        "format": "time_series",
+        "intervalFactor": 1,
+        "legendFormat": "Used Memory",
+        "range": true,
+        "refId": "B"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "expr": "((node_memory_Cached_bytes{instance=\"$server\"}) / (node_memory_MemTotal_bytes{instance=\"$server\"})) * 100",
+        "format": "time_series",
+        "intervalFactor": 1,
+        "legendFormat": "Cached Memory",
+        "refId": "C"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "expr": "((node_memory_SwapTotal_bytes{instance=\"$server\"} - node_memory_SwapFree_bytes{instance=\"$server\"}) / (node_memory_SwapTotal_bytes{instance=\"$server\"}))  * 100",
+        "format": "time_series",
+        "intervalFactor": 1,
+        "legendFormat": "Swap Memory",
+        "range": true,
+        "refId": "D"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "exemplar": true,
+        "expr": "((windows_cs_physical_memory_bytes{instance=\"$server\"} - windows_os_physical_memory_free_bytes{instance=\"$server\"}) / (windows_cs_physical_memory_bytes{instance=\"$server\"})) * 100",
+        "hide": false,
+        "interval": "",
+        "legendFormat": "Used Memory",
+        "range": true,
+        "refId": "A"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "exemplar": true,
+        "expr": "((windows_memory_cache_bytes{instance=\"$server\"}) / (windows_cs_physical_memory_bytes{instance=\"$server\"})) * 100",
+        "hide": false,
+        "interval": "",
+        "legendFormat": "Cached Memory",
+        "refId": "E"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "exemplar": true,
+        "expr": "(windows_memory_swap_pages_written_total{instance=\"$server\"} / (windows_cs_physical_memory_bytes{instance=\"$server\"})) * 100",
+        "hide": false,
+        "interval": "",
+        "legendFormat": "Swap Memory",
+        "refId": "I"
+      }
+    ],
+    "timeFrom": null,
+    "timeShift": null,
+    "title": "Memory Utilization",
+    "type": "timeseries"
+  }
+}

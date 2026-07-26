@@ -1,0 +1,187 @@
+{
+  "uid": "ayVNo-M4z",
+  "name": "Current CPU Utilization",
+  "kind": 1,
+  "type": "piechart",
+  "description": "",
+  "version": 2,
+  "folderUid": "",
+  "model": {
+    "datasource": {
+      "default": true,
+      "type": "prometheus",
+      "uid": "be1q3vh59ue4gd"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "custom": {
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          }
+        },
+        "decimals": 2,
+        "mappings": [],
+        "unit": "short"
+      },
+      "overrides": [
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Idle"
+          },
+          "properties": [
+            {
+              "id": "color",
+              "value": {
+                "fixedColor": "#6ed0e0",
+                "mode": "fixed"
+              }
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Iowait"
+          },
+          "properties": [
+            {
+              "id": "color",
+              "value": {
+                "fixedColor": "#6ed0e0",
+                "mode": "fixed"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "gridPos": {
+      "h": 7,
+      "w": 4,
+      "x": 20,
+      "y": 16
+    },
+    "id": 109,
+    "interval": null,
+    "maxDataPoints": 3,
+    "options": {
+      "legend": {
+        "calcs": [],
+        "displayMode": "table",
+        "placement": "bottom",
+        "showLegend": true,
+        "values": [
+          "value",
+          "percent"
+        ]
+      },
+      "pieType": "donut",
+      "reduceOptions": {
+        "calcs": [
+          "lastNotNull"
+        ],
+        "fields": "",
+        "values": false
+      },
+      "tooltip": {
+        "mode": "single",
+        "sort": "none"
+      }
+    },
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "exemplar": false,
+        "expr": "(avg by (instance) (irate(node_cpu_seconds_total{mode=~\"system|irq|softirq|iowait\"}[5m])) * 100)",
+        "format": "time_series",
+        "instant": true,
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "System",
+        "refId": "A"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "exemplar": false,
+        "expr": "(avg by (instance) (irate(node_cpu_seconds_total{mode=~\"user\"}[5m])) * 100)",
+        "format": "time_series",
+        "instant": true,
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "User",
+        "refId": "B"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "exemplar": false,
+        "expr": "(avg by (instance) (irate(node_cpu_seconds_total{mode=~\"idle\"}[5m])) * 100)",
+        "format": "time_series",
+        "instant": true,
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "Idle",
+        "refId": "C"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "exemplar": false,
+        "expr": "sum(windows_cpu_time_total{instance=\"$server\",mode=~\"idle\"})/sum(windows_cpu_time_total{instance=\"$server\",mode=~\"dpc|interrupt|privileged|user|idle\"})*100",
+        "hide": false,
+        "instant": true,
+        "interval": "",
+        "legendFormat": "Idle",
+        "refId": "G"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "exemplar": false,
+        "expr": "sum(windows_cpu_time_total{instance=\"$server\",mode=~\"user\"})/sum(windows_cpu_time_total{instance=\"$server\",mode=~\"dpc|interrupt|privileged|user|idle\"})*100",
+        "hide": false,
+        "instant": true,
+        "interval": "",
+        "legendFormat": "User",
+        "refId": "H"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "exemplar": false,
+        "expr": "sum(windows_cpu_time_total{instance=\"$server\",mode=~\"dpc|interrupt|privileged\"})/sum(windows_cpu_time_total{instance=\"$server\",mode=~\"dpc|interrupt|privileged|user|idle\"})*100",
+        "hide": false,
+        "instant": true,
+        "interval": "",
+        "legendFormat": "System",
+        "refId": "I"
+      }
+    ],
+    "title": "Current CPU Utilization",
+    "type": "piechart"
+  }
+}

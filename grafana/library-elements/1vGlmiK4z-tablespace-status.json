@@ -1,0 +1,206 @@
+{
+  "uid": "1vGlmiK4z",
+  "name": "Tablespace Status",
+  "kind": 1,
+  "type": "table",
+  "description": "Percent of Free Space Left",
+  "version": 1,
+  "folderUid": "",
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "be1q3vh59ue4gd"
+    },
+    "description": "Percent of Free Space Left",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "thresholds"
+        },
+        "custom": {
+          "align": "auto",
+          "cellOptions": {
+            "mode": "gradient",
+            "type": "gauge"
+          },
+          "inspect": false
+        },
+        "mappings": [],
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "#f2495c",
+              "value": null
+            },
+            {
+              "color": "#EAB839",
+              "value": 10
+            },
+            {
+              "color": "#73bf69",
+              "value": 20
+            }
+          ]
+        },
+        "unit": "percent"
+      },
+      "overrides": [
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Time"
+          },
+          "properties": [
+            {
+              "id": "custom.hidden",
+              "value": true
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "__name__"
+          },
+          "properties": [
+            {
+              "id": "custom.hidden",
+              "value": true
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "instance"
+          },
+          "properties": [
+            {
+              "id": "custom.hidden",
+              "value": true
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "job"
+          },
+          "properties": [
+            {
+              "id": "custom.hidden",
+              "value": true
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "tablespace"
+          },
+          "properties": [
+            {
+              "id": "color",
+              "value": {
+                "mode": "fixed"
+              }
+            },
+            {
+              "id": "custom.cellOptions",
+              "value": {
+                "type": "color-text"
+              }
+            },
+            {
+              "id": "displayName",
+              "value": "Tablespace"
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "dbinstance_identifier"
+          },
+          "properties": [
+            {
+              "id": "custom.hidden",
+              "value": true
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Environment"
+          },
+          "properties": [
+            {
+              "id": "custom.hidden",
+              "value": true
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Application"
+          },
+          "properties": [
+            {
+              "id": "custom.hidden",
+              "value": true
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Domain"
+          },
+          "properties": [
+            {
+              "id": "custom.hidden",
+              "value": true
+            }
+          ]
+        }
+      ]
+    },
+    "libraryPanel": {
+      "uid": "1vGlmiK4z"
+    },
+    "options": {
+      "cellHeight": "sm",
+      "footer": {
+        "countRows": false,
+        "fields": "",
+        "reducer": [
+          "sum"
+        ],
+        "show": false
+      },
+      "showHeader": true
+    },
+    "pluginVersion": "11.0.0",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "exemplar": false,
+        "expr": "oracledb_tablespace_pct_free{dbinstance_identifier=\"$RDS\",Environment=\"$Environment\"}",
+        "format": "table",
+        "instant": true,
+        "legendFormat": "__auto",
+        "range": false,
+        "refId": "A"
+      }
+    ],
+    "title": "Tablespace Status",
+    "type": "table"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": 1,
+  "uid": "ce54i1cnywem8b",
+  "name": "Casa",
+  "interval": "1m",
+  "orgId": 1,
+  "items": [
+    {
+      "type": "dashboard_by_tag",
+      "value": "Ingeteam",
+      "order": 1,
+      "title": ""
+    }
+  ]
+}

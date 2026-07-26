@@ -1,0 +1,85 @@
+{
+  "uid": "jPfwmiF4z",
+  "name": "Database Free Storage",
+  "kind": 1,
+  "type": "stat",
+  "description": "",
+  "version": 1,
+  "folderUid": "",
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "be1q3vh59ue4gd"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "fixed"
+        },
+        "mappings": [],
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            }
+          ]
+        },
+        "unit": "bytes"
+      },
+      "overrides": []
+    },
+    "libraryPanel": {
+      "uid": "jPfwmiF4z"
+    },
+    "options": {
+      "colorMode": "none",
+      "graphMode": "none",
+      "justifyMode": "auto",
+      "orientation": "auto",
+      "reduceOptions": {
+        "calcs": [
+          "lastNotNull"
+        ],
+        "fields": "",
+        "values": false
+      },
+      "text": {
+        "titleSize": 14
+      },
+      "textMode": "auto"
+    },
+    "pluginVersion": "9.1.5",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "exemplar": false,
+        "expr": "aws_rds_free_storage_space_average{dbinstance_identifier=\"$RDS\", job=\"$job\"}",
+        "instant": true,
+        "legendFormat": "__auto",
+        "range": false,
+        "refId": "A"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "expr": "aws_docdb_free_local_storage_average{dbinstance_identifier=\"$RDS\", job=\"$job\"}",
+        "hide": false,
+        "legendFormat": "__auto",
+        "range": true,
+        "refId": "B"
+      }
+    ],
+    "title": "Database Free Storage",
+    "type": "stat"
+  }
+}

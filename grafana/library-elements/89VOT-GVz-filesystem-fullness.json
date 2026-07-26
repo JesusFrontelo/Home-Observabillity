@@ -1,0 +1,130 @@
+{
+  "uid": "89VOT-GVz",
+  "name": "Filesystem Fullness",
+  "kind": 1,
+  "type": "timeseries",
+  "description": "",
+  "version": 2,
+  "folderUid": "",
+  "model": {
+    "datasource": {
+      "default": true,
+      "type": "prometheus",
+      "uid": "be1q3vh59ue4gd"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "custom": {
+          "axisBorderShow": false,
+          "axisCenteredZero": false,
+          "axisColorMode": "text",
+          "axisLabel": "",
+          "axisPlacement": "auto",
+          "barAlignment": 0,
+          "barWidthFactor": 0.6,
+          "drawStyle": "line",
+          "fillOpacity": 10,
+          "gradientMode": "none",
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "insertNulls": false,
+          "lineInterpolation": "linear",
+          "lineWidth": 1,
+          "pointSize": 5,
+          "scaleDistribution": {
+            "type": "linear"
+          },
+          "showPoints": "never",
+          "spanNulls": false,
+          "stacking": {
+            "group": "A",
+            "mode": "none"
+          },
+          "thresholdsStyle": {
+            "mode": "off"
+          }
+        },
+        "links": [],
+        "mappings": [],
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "red",
+              "value": 80
+            }
+          ]
+        },
+        "unit": "percent"
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 6,
+      "w": 24,
+      "x": 0,
+      "y": 36
+    },
+    "id": 123,
+    "options": {
+      "legend": {
+        "calcs": [
+          "lastNotNull"
+        ],
+        "displayMode": "table",
+        "placement": "right",
+        "showLegend": true
+      },
+      "tooltip": {
+        "mode": "single",
+        "sort": "none"
+      }
+    },
+    "pluginVersion": "8.3.1",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "expr": "100 - (node_filesystem_avail_bytes{device!=\"tmpfs\"} / node_filesystem_size_bytes{device!=\"tmpfs\"} * 100 )",
+        "format": "time_series",
+        "hide": false,
+        "intervalFactor": 1,
+        "legendFormat": "{{mountpoint}}",
+        "range": true,
+        "refId": "E"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "exemplar": true,
+        "expr": "100 - (windows_logical_disk_free_bytes{instance=~\"$server\", volume !~\"HarddiskVolume.+\"}  / windows_logical_disk_size_bytes{instance=~\"$server\", volume !~\"HarddiskVolume.+\"} * 100) ",
+        "hide": false,
+        "interval": "",
+        "legendFormat": "{{ volume }}",
+        "range": true,
+        "refId": "B"
+      }
+    ],
+    "timeFrom": null,
+    "timeShift": null,
+    "title": "Filesystem Fullness",
+    "type": "timeseries"
+  }
+}

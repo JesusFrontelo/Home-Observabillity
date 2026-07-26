@@ -1,0 +1,110 @@
+{
+  "uid": "qn6IoaG4k",
+  "name": "CPU Cores",
+  "kind": 1,
+  "type": "stat",
+  "description": "",
+  "version": 2,
+  "folderUid": "",
+  "model": {
+    "datasource": {
+      "default": true,
+      "type": "prometheus",
+      "uid": "be1q3vh59ue4gd"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "thresholds"
+        },
+        "mappings": [
+          {
+            "options": {
+              "match": "null",
+              "result": {
+                "text": "N/A"
+              }
+            },
+            "type": "special"
+          }
+        ],
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "red",
+              "value": 80
+            }
+          ]
+        },
+        "unit": "none"
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 2,
+      "w": 4,
+      "x": 20,
+      "y": 14
+    },
+    "id": 107,
+    "maxDataPoints": 100,
+    "options": {
+      "colorMode": "none",
+      "graphMode": "none",
+      "justifyMode": "auto",
+      "orientation": "horizontal",
+      "percentChangeColorMode": "standard",
+      "reduceOptions": {
+        "calcs": [
+          "lastNotNull"
+        ],
+        "fields": "",
+        "values": false
+      },
+      "showPercentChange": false,
+      "text": {},
+      "textMode": "auto",
+      "wideLayout": true
+    },
+    "pluginVersion": "11.2.2",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "exemplar": false,
+        "expr": "count(count(node_cpu_seconds_total{}) by (cpu))",
+        "format": "time_series",
+        "instant": true,
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "",
+        "refId": "A"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "exemplar": false,
+        "expr": "(count(windows_cpu_time_total{instance=\"$server\",mode!=\"idle\"}) by (cpu)) /4",
+        "hide": false,
+        "instant": true,
+        "interval": "",
+        "legendFormat": "",
+        "refId": "C"
+      }
+    ],
+    "title": "CPU Cores",
+    "type": "stat"
+  }
+}

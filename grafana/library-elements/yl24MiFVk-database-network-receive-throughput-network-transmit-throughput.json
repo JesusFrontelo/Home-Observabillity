@@ -1,0 +1,147 @@
+{
+  "uid": "yl24MiFVk",
+  "name": "Database Network Receive Throughput / Network Transmit Throughput",
+  "kind": 1,
+  "type": "timeseries",
+  "description": "",
+  "version": 1,
+  "folderUid": "",
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "be1q3vh59ue4gd"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "custom": {
+          "axisCenteredZero": false,
+          "axisColorMode": "text",
+          "axisLabel": "",
+          "axisPlacement": "auto",
+          "barAlignment": 0,
+          "drawStyle": "line",
+          "fillOpacity": 10,
+          "gradientMode": "none",
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "lineInterpolation": "linear",
+          "lineWidth": 2,
+          "pointSize": 5,
+          "scaleDistribution": {
+            "type": "linear"
+          },
+          "showPoints": "never",
+          "spanNulls": true,
+          "stacking": {
+            "group": "A",
+            "mode": "none"
+          },
+          "thresholdsStyle": {
+            "mode": "off"
+          }
+        },
+        "links": [],
+        "mappings": [],
+        "min": 0,
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "red",
+              "value": 80
+            }
+          ]
+        },
+        "unit": "Bps"
+      },
+      "overrides": []
+    },
+    "libraryPanel": {
+      "uid": "yl24MiFVk"
+    },
+    "options": {
+      "legend": {
+        "calcs": [
+          "lastNotNull",
+          "max",
+          "min"
+        ],
+        "displayMode": "table",
+        "placement": "bottom",
+        "showLegend": true
+      },
+      "tooltip": {
+        "mode": "multi",
+        "sort": "none"
+      }
+    },
+    "pluginVersion": "9.1.5",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "expr": "aws_rds_network_receive_throughput_average{dbinstance_identifier=~\"$RDS\", job=\"$job\"}",
+        "format": "time_series",
+        "intervalFactor": 1,
+        "legendFormat": "{{dbinstance_identifier}} Receive Throughput",
+        "range": true,
+        "refId": "A"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "expr": "aws_rds_network_transmit_throughput_average{dbinstance_identifier=~\"$RDS\", job=\"$job\"}",
+        "format": "time_series",
+        "intervalFactor": 1,
+        "legendFormat": "{{dbinstance_identifier}} Transmit Throughput",
+        "range": true,
+        "refId": "B"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "expr": "aws_docdb_network_receive_throughput_average{dbinstance_identifier=~\"$RDS\", job=\"$job\"}",
+        "hide": false,
+        "legendFormat": "{{dbinstance_identifier}} Receive Throughput",
+        "range": true,
+        "refId": "C"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "editorMode": "code",
+        "expr": "aws_docdb_network_transmit_throughput_average{dbinstance_identifier=~\"$RDS\", job=\"$job\"}",
+        "hide": false,
+        "legendFormat": "{{dbinstance_identifier}} Transmit Throughput",
+        "range": true,
+        "refId": "D"
+      }
+    ],
+    "timeFrom": null,
+    "timeShift": null,
+    "title": "Database Network Receive Throughput / Network Transmit Throughput",
+    "type": "timeseries"
+  }
+}
