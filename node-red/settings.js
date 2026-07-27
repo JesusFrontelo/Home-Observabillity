@@ -20,6 +20,13 @@
  *
  **/
 
+const adminUser = process.env.NODE_RED_ADMIN_USER;
+const adminPasswordHash = process.env.NODE_RED_ADMIN_PASSWORD_HASH;
+
+if (!adminUser || !adminPasswordHash) {
+    throw new Error("Missing NODE_RED_ADMIN_USER or NODE_RED_ADMIN_PASSWORD_HASH environment variables");
+}
+
 module.exports = {
 
 /*******************************************************************************
@@ -76,8 +83,8 @@ module.exports = {
     adminAuth: {
         type: "credentials",
         users: [{
-            username: "admin",
-            password: "$2y$08$lch8s.h.ylmZAfLVEuaP6uuzLTiJZ8CX3PZUCevAXox0AReHb37VW",
+            username: adminUser,
+            password: adminPasswordHash,
             permissions: "*"
         }]
     },

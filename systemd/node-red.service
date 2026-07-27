@@ -7,6 +7,8 @@ Documentation=http://nodered.org/
 [Service]
 Environment="NODE_OPTIONS=--max-old-space-size=128"
 Environment="NODE_RED_OPTIONS=-v"
+# Optional secrets file (keep out of Git)
+EnvironmentFile=-/etc/default/node-red-secrets
 #Full Path to Node.js
 ExecStart=/usr/local/bin/node-red $NODE_OPTIONS $NODE_RED_OPTIONS
 WorkingDirectory=/home/prometheus/.node-red/
