@@ -15,18 +15,18 @@ flowchart LR
     end
 
     subgraph Recoleccion
-        NR[<img src="docs/logos/nodered.svg" width="40"><br>Node-RED]
+        NR[<img src="docs/logos/png/nodered.png" width="40"><br>Node-RED]
         ME[<img src="docs/logos/modbus_exporter.svg" width="40"><br>modbus_exporter]
     end
 
     subgraph Observabilidad
-        P[<img src="docs/logos/prometheus.svg" width="40"><br>Prometheus]
-        G[<img src="docs/logos/grafana.svg" width="40"><br>Grafana]
+        P[<img src="docs/logos/png/prometheus.png" width="40"><br>Prometheus]
+        G[<img src="docs/logos/png/grafana.png" width="40"><br>Grafana]
     end
 
     subgraph Notificaciones
         PF[<img src="docs/logos/postfix.svg" width="40"><br>Postfix relay local]
-        GM[<img src="docs/logos/gmail.svg" width="40"><br>Gmail SMTP relay]
+        GM[<img src="docs/logos/png/gmail.png" width="40"><br>Gmail SMTP relay]
         U[<img src="docs/logos/email.svg" width="40"><br>Destinatarios email]
     end
 
