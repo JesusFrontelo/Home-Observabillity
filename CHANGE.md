@@ -6,6 +6,21 @@ The format is based on Keep a Changelog.
 
 ## [Unreleased]
 
+### Added
+
+- Added deployment documentation for Postfix SMTP relay with Gmail to support Alertmanager email notifications.
+- Added Alertmanager email template in alertmanager/templates/email.tmpl with sanitized content suitable for Git.
+
+### Changed
+
+- Updated alertmanager/alertmanager.yml to include a default email receiver and SMTP delivery via local Postfix relay.
+- Updated alertmanager/alertmanager.yml to externalize smtp_from and recipients via environment variables.
+- Updated systemd/alertmanager.service to load optional secrets file and enable environment expansion in Alertmanager config.
+
+### Removed
+
+- Removed all systemd secrets template files from the repository to avoid publishing any secret-related artifacts.
+
 ## [0.2.0] - 2026-07-26
 
 ### Added
@@ -17,8 +32,6 @@ The format is based on Keep a Changelog.
 - Added datasource provisioning file in grafana/provisioning/datasources/datasources.yml.
 - Added dashboard provisioning file in grafana/provisioning/dashboards/dashboards.yml.
 - Added export automation script in scripts/export_grafana_state.py.
-- Added secrets template file for Grafana in systemd/grafana-secrets.env.example.
-- Added secrets template file for Node-RED in systemd/node-red-secrets.env.example.
 - Added gitignore entries to prevent accidental database commits in .gitignore.
 
 ### Changed

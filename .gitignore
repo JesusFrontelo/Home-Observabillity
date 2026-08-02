@@ -2,3 +2,8 @@
 /grafana/data/grafana.db
 /grafana/data/grafana.db-shm
 /grafana/data/grafana.db-wal
+/systemd/*secrets*.env
+/systemd/*secrets*.env.*
+
+/systemd/*secrets.env
+/systemd/*secrets.env.example

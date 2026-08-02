@@ -1,16 +1,28 @@
+global:
+  smtp_smarthost: 'localhost:25'
+  smtp_from: '${ALERTMANAGER_SMTP_FROM}'
+  smtp_require_tls: false
+
+templates:
+  - '/opt/alertmanager/templates/email.tmpl'
+
 route:
+  receiver: 'email-alerts'
   group_by: ['alertname']
   group_wait: 30s
   group_interval: 5m
   repeat_interval: 1h
-  receiver: 'web.hook'
+
 receivers:
-  - name: 'web.hook'
-    webhook_configs:
-      - url: 'http://127.0.0.1:5001/'
+  - name: 'email-alerts'
+    email_configs:
+      - to: '${ALERTMANAGER_EMAIL_TO}'
+        send_resolved: true
+        html: '{{ template "email.default.html" . }}'
+
 inhibit_rules:
   - source_match:
-      severity: 'critical'
+      severidad: 'critica'
     target_match:
-      severity: 'warning'
+      severidad: 'warning'
     equal: ['alertname', 'dev', 'instance']

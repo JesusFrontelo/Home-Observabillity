@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="760" viewBox="0 0 1600 760" role="img" aria-labelledby="title desc">
+	<title id="title">Arquitectura Home-Observability</title>
+	<desc id="desc">Diagrama de flujo con Node-RED, Prometheus, Grafana, Alertmanager y relay SMTP.</desc>
+
+	<defs>
+		<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0%" stop-color="#f8fafc" />
+			<stop offset="100%" stop-color="#eef2ff" />
+		</linearGradient>
+		<marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+			<path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b" />
+		</marker>
+		<style>
+			.zone { fill:#ffffff; stroke:#cbd5e1; stroke-width:1.4; rx:16; }
+			.zone-title { font:600 18px 'Segoe UI', sans-serif; fill:#0f172a; }
+			.node { fill:#ffffff; stroke:#94a3b8; stroke-width:1.2; rx:12; }
+			.title { font:600 17px 'Segoe UI', sans-serif; fill:#0f172a; }
+			.meta { font:400 13px 'Segoe UI', sans-serif; fill:#334155; }
+			.edge { stroke:#64748b; stroke-width:2.2; marker-end:url(#arrow); fill:none; }
+			.edge-label { font:500 12px 'Segoe UI', sans-serif; fill:#334155; }
+			.chip { fill:none; stroke:#64748b; stroke-width:1.6; }
+		</style>
+	</defs>
+
+	<rect x="0" y="0" width="1600" height="760" fill="url(#bg)" />
+
+	<rect class="zone" x="30" y="90" width="260" height="560" />
+	<text class="zone-title" x="50" y="125">Edge / Campo</text>
+
+	<rect class="zone" x="330" y="90" width="390" height="560" />
+	<text class="zone-title" x="350" y="125">Captura y export</text>
+
+	<rect class="zone" x="760" y="90" width="320" height="560" />
+	<text class="zone-title" x="780" y="125">Observabilidad</text>
+
+	<rect class="zone" x="1120" y="90" width="450" height="560" />
+	<text class="zone-title" x="1140" y="125">Notificaciones</text>
+
+	<rect class="zone" x="430" y="20" width="740" height="52" />
+	<text class="zone-title" x="450" y="53">GitOps / Deploy: YAML + JSON + systemd</text>
+
+	<rect class="node" x="60" y="180" width="200" height="120" />
+	<rect class="chip" x="80" y="212" width="26" height="26" />
+	<rect class="chip" x="112" y="212" width="26" height="26" />
+	<rect class="chip" x="144" y="212" width="26" height="26" />
+	<text class="title" x="80" y="262">Dispositivos IoT</text>
+	<text class="meta" x="80" y="282">Modbus TCP</text>
+
+	<rect class="node" x="360" y="150" width="330" height="110" />
+	<image href="logos/nodered.svg" x="382" y="182" width="40" height="40" preserveAspectRatio="xMidYMid meet" />
+	<text class="title" x="438" y="202">Node-RED</text>
+	<text class="meta" x="438" y="222">Flujos y endpoint /metricas</text>
+
+	<rect class="node" x="360" y="300" width="330" height="110" />
+	<rect class="chip" x="382" y="334" width="36" height="30" />
+	<line class="chip" x1="378" y1="340" x2="382" y2="340" />
+	<line class="chip" x1="378" y1="348" x2="382" y2="348" />
+	<line class="chip" x1="418" y1="340" x2="422" y2="340" />
+	<line class="chip" x1="418" y1="348" x2="422" y2="348" />
+	<text class="title" x="438" y="352">modbus_exporter</text>
+	<text class="meta" x="438" y="372">Bridge Modbus a Prometheus</text>
+
+	<rect class="node" x="360" y="450" width="330" height="110" />
+	<polyline class="chip" points="382,510 392,510 398,496 406,525 414,510 426,510" />
+	<text class="title" x="438" y="502">node_exporter</text>
+	<text class="meta" x="438" y="522">Metricas del host Linux</text>
+
+	<rect class="node" x="790" y="150" width="260" height="110" />
+	<image href="logos/prometheus.svg" x="810" y="183" width="40" height="40" preserveAspectRatio="xMidYMid meet" />
+	<text class="title" x="866" y="202">Prometheus</text>
+	<text class="meta" x="866" y="222">Scrape y reglas</text>
+
+	<rect class="node" x="790" y="300" width="260" height="110" />
+	<image href="logos/grafana.svg" x="810" y="333" width="40" height="40" preserveAspectRatio="xMidYMid meet" />
+	<text class="title" x="866" y="352">Grafana</text>
+	<text class="meta" x="866" y="372">Dashboards</text>
+
+	<rect class="node" x="790" y="450" width="260" height="110" />
+	<path class="chip" d="M827 494 C818 494 818 482 818 476 C818 466 836 466 836 476 C836 482 836 494 827 494" />
+	<line class="chip" x1="818" y1="494" x2="836" y2="494" />
+	<circle cx="827" cy="500" r="2" fill="#64748b" />
+	<text class="title" x="866" y="502">Alertmanager</text>
+	<text class="meta" x="866" y="522">Routing de alertas</text>
+
+	<rect class="node" x="1150" y="150" width="390" height="110" />
+	<rect class="chip" x="1175" y="184" width="36" height="24" />
+	<polyline class="chip" points="1175,184 1193,198 1211,184" />
+	<text class="title" x="1230" y="202">Postfix relay</text>
+	<text class="meta" x="1230" y="222">SMTP local</text>
+
+	<rect class="node" x="1150" y="300" width="390" height="110" />
+	<image href="logos/gmail.svg" x="1170" y="333" width="40" height="40" preserveAspectRatio="xMidYMid meet" />
+	<text class="title" x="1230" y="352">Gmail SMTP</text>
+	<text class="meta" x="1230" y="372">Relay TLS 587</text>
+
+	<rect class="node" x="1150" y="450" width="390" height="110" />
+	<circle class="chip" cx="1180" cy="494" r="7" />
+	<circle class="chip" cx="1197" cy="498" r="7" />
+	<path class="chip" d="M1169 511 C1169 503 1191 503 1191 511" />
+	<path class="chip" d="M1186 515 C1186 507 1208 507 1208 515" />
+	<text class="title" x="1230" y="502">Destinatarios</text>
+	<text class="meta" x="1230" y="522">Correo final de alertas</text>
+
+	<line class="edge" x1="260" y1="220" x2="360" y2="205" />
+	<text class="edge-label" x="277" y="202">Modbus 502</text>
+
+	<line class="edge" x1="260" y1="230" x2="360" y2="355" />
+	<text class="edge-label" x="278" y="302">Modbus 502</text>
+
+	<line class="edge" x1="690" y1="205" x2="790" y2="205" />
+	<text class="edge-label" x="707" y="190">/metricas</text>
+
+	<line class="edge" x1="690" y1="355" x2="790" y2="205" />
+	<text class="edge-label" x="710" y="283">/metrics</text>
+
+	<line class="edge" x1="690" y1="505" x2="790" y2="205" />
+	<text class="edge-label" x="706" y="406">/metrics</text>
+
+	<line class="edge" x1="920" y1="260" x2="920" y2="300" />
+	<text class="edge-label" x="932" y="287">PromQL</text>
+
+	<line class="edge" x1="940" y1="260" x2="940" y2="450" />
+	<text class="edge-label" x="952" y="360">firing/resolved</text>
+
+	<line class="edge" x1="1050" y1="505" x2="1150" y2="205" />
+	<text class="edge-label" x="1069" y="356">SMTP 25</text>
+
+	<line class="edge" x1="1345" y1="260" x2="1345" y2="300" />
+	<text class="edge-label" x="1357" y="287">TLS 587</text>
+
+	<line class="edge" x1="1345" y1="410" x2="1345" y2="450" />
+</svg>
