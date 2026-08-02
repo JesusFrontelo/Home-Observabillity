@@ -8,66 +8,65 @@ Nota: los cambios de seguridad y endurecimiento se documentan en CHANGE.md.
 
 ```mermaid
 flowchart LR
-	%% Logos en nodos (Mermaid image shape)
-	%% Componentes con logo local: Node-RED, Prometheus, Grafana, Gmail
-	subgraph FIELD[Campo / Edge]
-		IOT[Dispositivos IoT\nModbus TCP]
+
+    subgraph Fuentes de datos
+        M1[<img src="docs/logos/modbus.svg" width="40"><br>Dispositivo Modbus TCP]
+        H1[<img src="docs/logos/linux.svg" width="40"><br>Host Linux]
+    end
+
+    subgraph Recoleccion
+        NR[<img src="docs/logos/nodered.svg" width="40"><br>Node-RED]
+        ME[<img src="docs/logos/modbus_exporter.svg" width="40"><br>modbus_exporter]
+    end
+
+    subgraph Observabilidad
+        P[<img src="docs/logos/prometheus.svg" width="40"><br>Prometheus]
+        G[<img src="docs/logos/grafana.svg" width="40"><br>Grafana]
+    end
+
+    subgraph Notificaciones
+        PF[<img src="docs/logos/postfix.svg" width="40"><br>Postfix relay local]
+        GM[<img src="docs/logos/gmail.svg" width="40"><br>Gmail SMTP relay]
+        U[<img src="docs/logos/email.svg" width="40"><br>Destinatarios email]
+    end
+
+	subgraph Fuentes de datos
+		M1[Dispositivo Modbus TCP]
+		H1[Host Linux]
 	end
 
-	subgraph COLLECT[Captura y Export]
-		NR@{ img: "docs/logos/nodered.svg", label: "Node-RED\nFlujos + /metricas", pos: "r", w: 48, h: 48 }
-		MBX[modbus_exporter\nModbus -> Prometheus]
-		NEX[node_exporter\nMétricas del host]
+	subgraph Recoleccion
+		NR[Node-RED]
+		ME[modbus_exporter]
+		NE[node_exporter]
 	end
 
-	subgraph OBS[Core de Observabilidad]
-		PROM@{ img: "docs/logos/prometheus.svg", label: "Prometheus\nScrape + Reglas", pos: "r", w: 48, h: 48 }
-		GRAF@{ img: "docs/logos/grafana.svg", label: "Grafana\nDashboards + Alerting UI", pos: "r", w: 48, h: 48 }
-		AM[Alertmanager\nRuteo de alertas]
+	subgraph Observabilidad
+		P[Prometheus]
+		G[Grafana]
+		A[Alertmanager]
 	end
 
-	subgraph NOTIF[Notificación]
-		POSTFIX[Postfix local\nRelay SMTP]
-		GMAIL@{ img: "docs/logos/gmail.svg", label: "Gmail SMTP\nSmarthost", pos: "r", w: 48, h: 48 }
-		MAIL[Destinatarios\nEmail final]
+	subgraph Notificaciones
+		PF[Postfix relay local]
+		GM[Gmail SMTP relay]
+		U[Destinatarios email]
 	end
 
-	subgraph CFG[GitOps / Config]
-		REPO[Repositorio GitHub\nYAML + JSON + systemd]
-	end
-
-	IOT -->|Lectura Modbus| NR
-	IOT -->|Lectura Modbus| MBX
-
-	NR -->|/metricas| PROM
-	MBX -->|/metrics| PROM
-	NEX -->|/metrics| PROM
-
-	PROM -->|Consultas PromQL| GRAF
-	PROM -->|Alertas firing| AM
-
-	AM -->|SMTP :25| POSTFIX
-	POSTFIX -->|TLS 587| GMAIL
-	GMAIL -->|Entrega| MAIL
-
-	REPO -. despliega .-> PROM
-	REPO -. despliega .-> GRAF
-	REPO -. despliega .-> AM
-	REPO -. despliega .-> NR
-	REPO -. despliega .-> MBX
-
-	classDef edge fill:#E6F7FF,stroke:#1D4ED8,stroke-width:1.4px,color:#0F172A
-	classDef collect fill:#ECFDF5,stroke:#047857,stroke-width:1.4px,color:#052E16
-	classDef core fill:#FFF7ED,stroke:#C2410C,stroke-width:1.4px,color:#431407
-	classDef notif fill:#FEF2F2,stroke:#B91C1C,stroke-width:1.4px,color:#450A0A
-	classDef cfg fill:#F5F3FF,stroke:#6D28D9,stroke-width:1.4px,color:#2E1065
-
-	class IOT edge
-	class NR,MBX,NEX collect
-	class PROM,GRAF,AM core
-	class POSTFIX,GMAIL,MAIL notif
-	class REPO cfg
+	M1 -->|Modbus 502| NR
+	M1 -->|Modbus 502| ME
+	H1 -->|Metricas host| NE
+	NR -->|/metricas| P
+	ME -->|/metrics| P
+	NE -->|/metrics| P
+	P -->|Consultas PromQL| G
+	P -->|Alertas firing/resolved| A
+	A -->|SMTP localhost:25| PF
+	PF -->|SMTP TLS 587| GM
+	GM --> U
 ```
+
+Nota: GitHub no soporta de forma estable logos SVG incrustados dentro de nodos Mermaid; por compatibilidad, este diagrama usa nodos de texto.
 
 ## Versiones instaladas
 
