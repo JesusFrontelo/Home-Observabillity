@@ -1,0 +1,75 @@
+groups:
+- name: node-exporter-pi3b
+  rules:
+
+  - alert: CPUAlta
+    expr: 100 * (1 - avg by (instance) (rate(node_cpu_seconds_total{mode="idle"}[5m]))) > 80
+    for: 10m
+    labels:
+      severity: warning
+    annotations:
+      summary: "El uso de CPU es alto en el sistema de observabilidad"
+      description: "El uso de CPU en la Raspberry Pi del sistema de observabilidad ha superado el 80% durante 10 minutos. El sistema puede estar sobrecargado."
+
+  - alert: RAMAlta
+    expr: 100 * (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) > 80
+    for: 10m
+    labels:
+      severity: warning
+    annotations:
+      summary: "El uso de RAM es alto en el sistema de observabilidad"
+      description: "El uso de memoria supera el 80% durante 10 minutos. El sistema de observabilidad corre en una Raspberry Pi 3B con 1 GB de RAM, así que esto puede convertirse rápidamente en un problema."
+
+  - alert: RAMLibreBaja
+    expr: node_memory_MemAvailable_bytes / 1024 / 1024 < 256
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Memoria libre baja en el sistema de observabilidad"
+      description: "La RAM disponible está por debajo de 256 MiB durante 5 minutos. Esto puede afectar a la estabilidad y la respuesta de las aplicaciones del sistema de observabilidad."
+
+  - alert: SwapAlta
+    expr: node_memory_SwapTotal_bytes > 0 and 100 * (node_memory_SwapUsed_bytes / node_memory_SwapTotal_bytes) > 50
+    for: 10m
+    labels:
+      severity: warning
+    annotations:
+      summary: "El uso de swap es alto en el sistema de observabilidad"
+      description: "El uso de swap supera el 50% en el sistema de observabilidad. El sistema puede estar bajo presión de memoria."
+
+  - alert: CargaAlta
+    expr: node_load1 > 4
+    for: 15m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Carga alta sostenida en el sistema de observabilidad"
+      description: "La carga media está por encima de 4 durante 15 minutos. El sistema de observabilidad está bajo presión sostenida de CPU."
+
+  - alert: DiscoCasiLleno
+    expr: 100 * (1 - (node_filesystem_avail_bytes / node_filesystem_size_bytes)) > 85
+    for: 10m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Un disco o partición está casi lleno en el sistema de observabilidad"
+      description: "El uso del disco en {{ $labels.mountpoint }} supera el 85% durante 10 minutos. Esto puede afectar a los datos o a la estabilidad de servicios que usan ese almacenamiento."
+
+  - alert: DiscoCritico
+    expr: 100 * (1 - (node_filesystem_avail_bytes / node_filesystem_size_bytes)) > 95
+    for: 5m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Un disco o partición está crítico en el sistema de observabilidad"
+      description: "El uso del disco en {{ $labels.mountpoint }} supera el 95% durante 5 minutos. El almacenamiento puede estar al límite y puede provocar errores graves."
+
+  - alert: ServicioCaido
+    expr: node_systemd_unit_state{state="active", name=~"alertmanager.service|grafana-server.service|home-connect_exporter.service|modbus_exporter.service|node_exporter.service|node-red.service|prometheus.service|sshd.service"} == 0
+    for: 2m
+    labels:
+      severity: critical
+    annotations:
+      summary: "El servicio {{ $labels.name }} está caído en el sistema de observabilidad"
+      description: "El servicio {{ $labels.name }} no está activo en el sistema de observabilidad. Puede haber dejado de funcionar y necesita revisión inmediata."
