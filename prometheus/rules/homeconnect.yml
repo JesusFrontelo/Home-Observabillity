@@ -1,21 +1,11 @@
 groups:
+- name: Lavavajillas Bosch
 
-- name: Bosch Appliance Door Open
   rules:
-  - alert: BoschApplianceDoorOpen
-    expr: hc_bsch_common_status_door_state{value="open"} > 0
+  - alert: Puerta_Abierta_Lavavajillas
+    expr: hc_bsch_common_status_door_state == 1
     for: 1m
     labels:
-      severity: page
+      severity: info
     annotations:
-      summary: Bosch Appliance Door Opened more than 1 minute
-
-- name: Bosch Oven Temperature
-  rules:
-  - alert: Bosch Oven High Temperature
-    expr: hc_bsch_oven_status_temperature{brand="Bosch", type="Oven", name="Oven"} > 100
-    for: 5m
-    labels:
-      severity: page
-    annotations:
-      summary: Bosch Oven High Temperature more than 5 minutes
+      summary: La puerta del lavavajillas Bosch está abierta.
